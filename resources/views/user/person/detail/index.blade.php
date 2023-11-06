@@ -81,7 +81,6 @@
         <p>{{ $comments->body }}</p>
         <a href=""><span><p>{{ $comments->created_at->diffForHumans() }}</p></span></a>
         @endforeach
-
     </div>
 </div>
 @endsection

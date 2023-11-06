@@ -10,7 +10,7 @@
             <div class="layout-page">
 
                 <!-- Navbar -->
-                @include('layouts._includes.dashboard.NavbarSimple')
+                @include('layouts._includes.dashboard.Navbar')
                 <!-- / Navbar -->
 
                 <div class="container justify-content-center mt-4 mb-5">
@@ -20,7 +20,7 @@
                             action="{{ route('admin.user.update', $data->id) }}">
                             @csrf
                             @method('PUT')
-                            @include('forms._formUser.index')                            
+                            @include('forms.admin._formUser.index')                            
                         </form>
                     </div>
                 </div>

@@ -20,6 +20,12 @@ class PersonController extends Controller
 
     public function index()
     {
+        $response['data'] = Person::OrderBy('id', 'desc')->paginate(3);
+        return view('site.person.index', $response);
+    }
+
+    public function list()
+    {
         $response['data'] = Person::where('fk_userId', Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.person.index', $response);
     }

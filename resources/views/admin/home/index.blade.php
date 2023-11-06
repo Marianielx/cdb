@@ -23,7 +23,7 @@
         <div class="layout-container">
             <!-- Layout container -->
             <div class="layout-page">
-                @include('layouts._includes.dashboard.NavbarSimple')
+                @include('layouts._includes.dashboard.Navbar')
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
@@ -36,7 +36,7 @@
                                     <div class="card-body">
                                         <div class="card-title d-flex align-items-start justify-content-between">
                                             <div class="">
-                                                <h4>Total de Usuários </h4>
+                                                <h4>Usuários </h4>
                                                 <hr>
                                             </div>
                                             <div class="dropdown">
@@ -50,7 +50,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <span class="fw-semibold d-block mb-1">Usuários</span>
+                                        <span class="fw-semibold d-block mb-1">Registrados</span>
                                         <h3 class="card-title mb-2 text-success">{{ $count_users }}</h3>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                     <div class="card-body">
                                         <div class="card-title d-flex align-items-start justify-content-between">
                                             <div class="">
-                                                <h4>Total de Serviços</h4>
+                                                <h4>Pessoas</h4>
                                                 <hr>
                                             </div>
                                             <div class="dropdown">
@@ -69,13 +69,13 @@
                                                     <i class="bx bx-dots-vertical-rounded"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                                    <a class="dropdown-item" href="{{ route('admin.service.index') }}">Ver
+                                                    <a class="dropdown-item" href="{{ route('admin.person.index') }}">Ver
                                                         mais</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <span class="fw-semibold d-block mb-1">Serviços</span>
-                                        <h3 class="card-title mb-2 text-success">{{ $count_services }}</h3>
+                                        <span class="fw-semibold d-block mb-1">Inscritos</span>
+                                        <h3 class="card-title mb-2 text-success">{{ $count_people }}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                                     <div class="card-body">
                                         <div class="card-title d-flex align-items-start justify-content-between">
                                             <div class="">
-                                                <h4>Total de Pontos</h4>
+                                                <h4>Comentários</h4>
                                                 <hr>
                                             </div>
                                             <div class="dropdown">
@@ -93,40 +93,16 @@
                                                     <i class="bx bx-dots-vertical-rounded"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                                    <a class="dropdown-item" href="{{ route('admin.province.index') }}">Ver
+                                                    <a class="dropdown-item" href="{{ route('admin.personComment.index') }}">Ver
                                                         mais</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <span class="fw-semibold d-block mb-1">Angola Online</span>
-                                        <h3 class="card-title mb-2 text-success">{{ $count_points }}</h3>
+                                        <span class="fw-semibold d-block mb-1">Comentados</span>
+                                        <h3 class="card-title mb-2 text-success">{{ $count_comments }}</h3>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="card-title d-flex align-items-start justify-content-between">
-                                            <div class="">
-                                                <h4>Total de Galerias </h4>
-                                                <hr>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button class="btn p-0" type="button" id="cardOpt3"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                                    <a class="dropdown-item" href="{{ route('admin.gallery.index') }}">Ver
-                                                        mais</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="fw-semibold d-block mb-1">Imagens</span>
-                                        <h3 class="card-title mb-2 text-success">{{ $count_inclusions }}</h3>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>                           
 
                         </div>
 

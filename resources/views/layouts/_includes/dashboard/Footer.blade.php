@@ -3,7 +3,7 @@
     <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
         <div class="container mt-4">
             <div class="copyright">
-                <strong>INFOSI</strong> - 2023 &copy; Todos Direitos Reservados | <a href="{{ route('site.terms') }}"
+                <strong>MVIT SOLS</strong> - 2023 &copy; Todos Direitos Reservados | <a href="{{ route('site.terms') }}"
                     target="_blank" class="text-dark-50 ank">Politícas de Privacidade & Termos de Uso</a>
             </div>
         </div>

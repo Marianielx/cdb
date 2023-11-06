@@ -81,7 +81,7 @@
             <div class="modal-body">
                 <div class="col-md-12 mb-1">
                     <label class="label-control">Nome Completo</label>
-                    <input type="text" id="fullname" class="form-control" readonly>
+                    <h3><input type="text" id="fullname" class="form-control" readonly></h3>
                 </div>
                 <div class="col-md-12 mb-1">
                     <label class="label-control">Apelido Ou Alcunha</label>

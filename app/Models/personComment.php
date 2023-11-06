@@ -12,6 +12,11 @@ class personComment extends Model
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
 
+    public function people_data()
+    {
+        return $this->belongsTo(Person::class, 'fk_personId');
+    }
+
     public function users_name()
     {
         return $this->belongsTo(User::class, 'fk_userId');

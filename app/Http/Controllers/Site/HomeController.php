@@ -11,7 +11,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $response['data'] = Person::where('state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = Person::OrderBy('id', 'desc')->paginate(3);
         return view('site.home.index', $response);
     }
 

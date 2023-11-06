@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 route::get('/', ['as' => 'site.home', 'uses' => 'Site\HomeController@index']);
 
 /* Terms */
-route::get('/termos', ['as' => 'site.terms', 'uses' => 'Site\TermsController@index']);
+route::get('/terms', ['as' => 'site.terms', 'uses' => 'Site\TermsController@index']);
 
 /** BEGIN PERSON FREE ROUTE **/
 route::get('/missing-person/show/{id}', ['as' => 'user.person.show', 'uses' => 'Site\PersonController@show']);
@@ -21,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
 
     /** BEGIN PERSON ROUTE **/
     route::get('/missing-person', ['as' => 'site.person.index', 'uses' => 'Site\PersonController@index']);
+    route::get('/my-person', ['as' => 'site.person.list', 'uses' => 'Site\PersonController@list']);
     route::get('/missing-person-create', ['as' => 'user.person.create', 'uses' => 'Site\PersonController@create']);
     route::post('/missing-person-store', ['as' => 'user.person.store', 'uses' => 'Site\PersonController@store']);
     route::get('/missing-person/detail/{id}', ['as' => 'user.person.detail', 'uses' => 'Site\PersonController@details']);
@@ -35,3 +36,4 @@ Route::middleware(['auth'])->group(function () {
 
 /* inclui as rotas de autenticação do ficheiro auth.php */
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

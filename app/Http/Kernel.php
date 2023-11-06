@@ -58,7 +58,7 @@ class Kernel extends HttpKernel
         
         'Editor' => \App\Http\Middleware\Editor::class,
         'UspMIREX' => \App\Http\Middleware\UspMIREX::class,
-        'Administrador' => \App\Http\Middleware\Administrador::class,
+        'Administrador' => \App\Http\Middleware\Administrator::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

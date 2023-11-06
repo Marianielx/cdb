@@ -1,6 +1,6 @@
 @extends('layouts.merge.dashboard')
 
-@section('title', 'Listar Utilizador')
+@section('title', 'Listar Pessoas Desaparecidas')
 
 @section('content')
 
@@ -13,7 +13,6 @@
                 @include('layouts._includes.dashboard.Navbar')
                 <!-- / Navbar -->
 
-
                 <div class="container justify-content-center mt-2 mb-5">
                     <div class="flex-grow-1 container-p-y">
                         <!-- Bootstrap Table with Header - Dark -->
@@ -25,10 +24,8 @@
                                             <tr class="text-center text-ligth">
                                                 <th style="color: #fff;">#</th>
                                                 <th style="width: 100%; color: #fff;">Nome</th>
-                                                <th style="width: 100%; color: #fff;">Sobrenome</th>
-                                                <th style="width: 100%; color: #fff;">Email</th>
-                                                <th style="width: 100%; color: #fff;">Nível</th>
-                                                <th style="color: #fff;">Opções</th>
+                                                <th style="width: 100%; color: #fff;">Apelido</th>
+                                                <th style="color: #fff;">Acções</th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
@@ -36,10 +33,8 @@
                                             @foreach ($data as $item)
                                                 <tr class="text-center text-dark">
                                                     <td>{{ $item->id }}</td>
-                                                    <td>{{ $item->first_name }} </td>
-                                                    <td>{{ $item->last_name }} </td>
-                                                    <td>{{ $item->email }} </td>
-                                                    <td>{{ $item->level }} </td>
+                                                    <td>{{ $item->fullname }} </td>
+                                                    <td>{{ $item->nickname }} </td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-primary btn-sm dropdown-toggle"
@@ -49,14 +44,8 @@
 
                                                             <div class="dropdown-menu">
                                                                 <a class="dropdown-item"
-                                                                    href="{{ url("admin/user/show/{$item->id}") }}"><i
+                                                                    href="{{ url("admin/person/show/{$item->id}") }}"><i
                                                                         class="bx bx-detail"></i> Detalhe</a>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ url("admin/user/edit/{$item->id}") }}"><i
-                                                                        class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ url("admin/user/delete/{$item->id}") }}"><i
-                                                                        class="bx bx-trash me-1"></i> Excluir</a>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -64,9 +53,9 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
                                 </div>
                             </div>
-                            <!--/ Bootstrap Table with Header Dark -->
                         </div>
                     </div>
                 </div>

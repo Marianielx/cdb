@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use App\Classes\Logger;
+use App\Models\{Log, User};
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
-use App\Models\{Internship, Log, User};
 use Illuminate\Support\Facades\{Auth, Hash};
 
 class UserController extends Controller
@@ -23,18 +22,13 @@ class UserController extends Controller
     {
         $response['data'] = User::get();
         $response['count'] = User::count();
-        $response['internship'] = Internship::where("state", 'Submetido')->count();
-        $response['data_internship'] = Internship::OrderBy('id', 'desc')->where("state", 'Submetido')->get();
-
-        $this->Logger->log('info', 'Listou os Utilizadores');
+        $this->Logger->log('info', 'Listed Users');
         return view('admin.user.list.index', $response);
     }
 
     public function create()
     {
-        $response['internship'] = Internship::where("state", 'Submetido')->count();
-        $response['data_internship'] = Internship::OrderBy('id', 'desc')->where("state", 'Submetido')->get();
-        return view('admin.user.create.index', $response);
+        return view('admin.user.create.index');
     }
 
     public function store(Request $request)
@@ -42,34 +36,38 @@ class UserController extends Controller
         $this->validate(
             $request,
             [
-                'name' => 'required',
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
                 'email' => 'required',
+                'level' => 'required',
                 'password' => [
                     'required',
                     'confirmed',
                     'min:8',
                     'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#@%]).*$/'
                 ],
-                'level' => 'required',
             ],
             [
-                'name.required' => 'Inserir o primeiro nome',
-                'email.required' => 'Inserir o e-mail',
-                'password.required' => 'Inserir a senha',
-                'level.required' => 'Inserir o nível de permissão',
+                'first_name.required' => 'Informar o primeiro nome',
+                'last_name.required' => 'Informar o último nome',
+                'email.required' => 'Informar o e-mail',
+                'level.required' => 'Informar o nível de acesso',
+                'password.required' => 'Informar a senha',
             ]
         );
         $exists_email = User::where('email', $request['email'])->exists();
         if ($exists_email) {
             return redirect()->back()->with('exist_email', '1');
         }
-        $name = $request->input('name');
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
         $email = $request->input('email');
         $password = $request->input('password');
         $level = $request->input('level');
 
         $data = array(
-            'name' => $name,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
             'email' => $email,
             'password' => Hash::make($password),
             'level' => $level,
@@ -80,106 +78,59 @@ class UserController extends Controller
             return redirect()->back()->with('catch', '1');
         }
         return redirect()->back()->with('create', '1');
-        $this->Logger->log('info', 'Cadastrou utilizador: ' . $request['name']);
+        $this->Logger->log('info', 'Created User: ' . $request['first_name'] + ' ' + ['last_name']);
     }
 
     public function show($id)
     {
-        if (Auth::user()->level != 'Administrador' && Auth::user()->id != $id) {
+        if (Auth::user()->level != 'Administrator' && Auth::user()->id != $id) {
             return redirect()->route('admin.home')->with('NoAuth', '1');
         } else {
             $response['logs'] = Log::where('USER_ID', $id)->orderBy('id', 'desc')->paginate(30);
             $response['data'] = User::find($id);
-            $response['internship'] = Internship::where("state", 'Submetido')->count();
-            $response['data_internship'] = Internship::OrderBy('id', 'desc')->where("state", 'Submetido')->get();
-            $this->Logger->log('info', 'Visualizou um Utilizador com o identificador ' . $id);
+            $this->Logger->log('info', 'Viewed user With ID: ' . $id);
             return view('admin.user.details.index', $response);
         }
     }
 
     public function edit($id)
     {
-        if (Auth::user()->level != 'Administrador' && Auth::user()->id != $id) {
+        if (Auth::user()->level != 'Administrator' && Auth::user()->id != $id) {
             return redirect()->route('admin.home')->with('NoAuth', '1');
         } else {
             $response['data'] = User::find($id);
-            $response['internship'] = Internship::where("state", 'Submetido')->count();
-            $response['data_internship'] = Internship::OrderBy('id', 'desc')->where("state", 'Submetido')->get();
-            $this->Logger->log('info', 'Entrou em editar um Utilizador com o identificador ' . $id);
+            $this->Logger->log('info', 'Get in Edit User With ID: ' . $id);
             return view('admin.user.edit.index', $response);
-        }
-    }
-
-    public function edits($id)
-    {
-        if (Auth::user()->level != 'Administrador' && Auth::user()->id != $id) {
-            return redirect()->route('admin.home')->with('NoAuth', '1');
-        } else {
-            $response['data'] = User::find($id);
-            $response['internship'] = Internship::where("state", 'Submetido')->count();
-            $response['data_internship'] = Internship::OrderBy('id', 'desc')->where("state", 'Submetido')->get();
-            $this->Logger->log('info', 'Entrou em editar senha um Utilizador com o identificador ' . $id);
-            return view('admin.user.edit.indexs', $response);
         }
     }
 
     public function update(Request $request, $id)
     {
-        if (Auth::user()->level != 'Administrador' && Auth::user()->id != $id) {
+        if (Auth::user()->level != 'Administrator' && Auth::user()->id != $id) {
             return redirect()->route('admin.home')->with('NoAuth', '1');
         } else {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255',
-                'password' => [
-                    'required',
-                    'confirmed',
-                    'min:8',
-                    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#@%]).*$/',
-                    Rules\Password::defaults()
+            $request->validate(
+                [
+                    'first_name' => 'required|string|max:255',
+                    'last_name' => 'required|string|max:255',
+                    'level' => 'required',
                 ],
-            ]);
-            $exists_email = User::where('email', $request['email'])->exists();
-            if ($exists_email) {
-                return redirect()->back()->with('exist_email', '1');
-            }
+                [
+                    'first_name.required' => 'Informar o primeiro nome',
+                    'last_name.required' => 'Informar o último nome',
+                    'level.required' => 'Informar o nível de acesso',
+                ]
+            );
             try {
                 User::find($id)->update([
-                    'name' => $request->name,
-                    'email' => $request->email,
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
                     'level' => $request->level,
-                    'password' => Hash::make($request->password),
                 ]);
             } catch (Exception $e) {
                 return redirect()->back()->with('catch', '1');
             }
-            $this->Logger->log('info', 'Editou um Utilizador com o identificador ' . $id);
-            return redirect()->route('admin.user.index')->with('edit', '1');
-        }
-    }
-
-    public function updates(Request $request, $id)
-    {
-        if (Auth::user()->level != 'Administrador' && Auth::user()->id != $id) {
-            return redirect()->route('admin.home')->with('NoAuth', '1');
-        } else {
-            $request->validate([
-                'password' => [
-                    'required',
-                    'confirmed',
-                    'min:8',
-                    'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#@%]).*$/',
-                    Rules\Password::defaults()
-                ],
-            ]);
-            try {
-                User::find($id)->update([
-                    'password' => Hash::make($request->password),
-                ]);
-            } catch (Exception $e) {
-                return redirect()->back()->with('catch', '1');
-            }
-            $this->Logger->log('info', 'Editou senha um Utilizador com o identificador ' . $id);
+            $this->Logger->log('info', 'Edited User ID: ' . $id);
             return redirect()->route('admin.user.index')->with('edit', '1');
         }
     }
@@ -193,7 +144,7 @@ class UserController extends Controller
             } catch (Exception $e) {
                 return redirect()->back()->with('catch', '1');
             }
-            $this->Logger->log('info', 'Eliminou um Utilizador com o identificador ' . $id);
+            $this->Logger->log('danger', 'Deleted User ID: ' . $id);
             return redirect()->back()->with('destroy', '1');
         } else {
             return redirect()->back();
