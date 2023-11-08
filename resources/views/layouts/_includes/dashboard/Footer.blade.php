@@ -3,8 +3,7 @@
     <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
         <div class="container mt-4">
             <div class="copyright">
-                <strong>MVIT SOLS</strong> - 2023 &copy; Todos Direitos Reservados | <a href="{{ route('site.terms') }}"
-                    target="_blank" class="text-dark-50 ank">Politícas de Privacidade & Termos de Uso</a>
+                <strong>MVIT SOLS</strong> - 2023 &copy; Todos Direitos Reservados | <a href="{{ route('site.terms') }}" target="_blank" class="text-dark-50 ank">Politícas de Privacidade & Termos de Uso</a>
             </div>
         </div>
     </div>
@@ -12,78 +11,98 @@
 <!-- / Footer -->
 
 @if (session('create'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Cadastrado com sucesso!',
-            showConfirmButton: true
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Cadastrado com sucesso!',
+        showConfirmButton: true
+    })
+</script>
 @elseif(session('destroy'))
-    <script>
-        Swal.fire({
-            icon: 'info',
-            title: 'Eliminado com sucesso!',
-            showConfirmButton: true
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Eliminado com sucesso!',
+        showConfirmButton: true
+    })
+</script>
 @elseif(session('update'))
-    <script>
-        Swal.fire({
-            icon: 'info',
-            title: 'Atulização realizada com sucesso!',
-            showConfirmButton: true
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'info',
+        title: 'Atulização realizada com sucesso!',
+        showConfirmButton: true
+    })
+</script>
 @elseif(session('edit'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Alterações foram salvas com sucesso!',
-            showConfirmButton: true
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Alterações foram salvas com sucesso!',
+        showConfirmButton: true
+    })
+</script>
 @elseif(session('create_image'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Imagens foram salvas com sucesso!',
-            showConfirmButton: true
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Imagens foram salvas com sucesso!',
+        showConfirmButton: true
+    })
+</script>
 @elseif(session('NoAuth'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Não tem autorização para visualizar esta página!',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Não tem autorização para visualizar esta página!',
+        showConfirmButton: false,
+        timer: 2500
+    })
+</script>
 @elseif(session('exists'))
-    <script>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Registo Já Existe!',
+        showConfirmButton: true
+    })
+    @elseif(session('exists')) <
+        script >
         Swal.fire({
             icon: 'error',
             title: 'Registo Já Existe!',
             showConfirmButton: true
         })
-        @elseif(session('exists')) <
-            script >
-            Swal.fire({
-                icon: 'error',
-                title: 'Registo Já Existe!',
-                showConfirmButton: true
-            })
-    </script>
+</script>
 @elseif(session('catch'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Erro:1364 - Suporte Técnico',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Erro:1364 - Suporte Técnico',
+        showConfirmButton: false,
+        timer: 2500
+    })
+</script>
+@elseif(session('confirm'))
+<script>
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
+        }
+    })
+</script>
 @endif
 
 <script src="{{ asset('dashboard/assets/vendor/libs/jquery/jquery.js') }}"></script>
@@ -146,53 +165,53 @@
 {{-- <script type="text/javascript" src="{{ asset('dashboard/assets/toastr/js/toastify.js') }}"></script> --}}
 
 @if (session('create'))
-    <script>
-        Toastify({
-            text: 'Salvo com sucesso!',
-            duration: 5000,
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)"
-            }
-        }).showToast();
-    </script>
+<script>
+    Toastify({
+        text: 'Salvo com sucesso!',
+        duration: 5000,
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)"
+        }
+    }).showToast();
+</script>
 @elseif (session('edit'))
-    <script>
-        Toastify({
-            text: 'Editado com sucesso!',
-            duration: 5000,
-            style: {
-                background: "linear-gradient(45deg, red, blue)"
-            }
-        }).showToast();
-    </script>
+<script>
+    Toastify({
+        text: 'Editado com sucesso!',
+        duration: 5000,
+        style: {
+            background: "linear-gradient(45deg, red, blue)"
+        }
+    }).showToast();
+</script>
 @elseif (session('destroy'))
-    <script>
-        Toastify({
-            info: 'Excluido com sucesso!',
-            duration: 5000,
-            style: {
-                background: "linear-gradient(45deg, red, blue)"
-            }
-        }).showToast();
-    </script>
+<script>
+    Toastify({
+        info: 'Excluido com sucesso!',
+        duration: 5000,
+        style: {
+            background: "linear-gradient(45deg, red, blue)"
+        }
+    }).showToast();
+</script>
 @elseif (session('exist_email'))
-    <script>
-        Toastify({
-            text: 'E-mail já existente!',
-            duration: 5000,
-            style: {
-                background: "linear-gradient(45deg, red, blue)"
-            }
-        }).showToast();
-    </script>
+<script>
+    Toastify({
+        text: 'E-mail já existente!',
+        duration: 5000,
+        style: {
+            background: "linear-gradient(45deg, red, blue)"
+        }
+    }).showToast();
+</script>
 @elseif (session('exists'))
-    <script>
-        Toastify({
-            text: 'Informação já existente!',
-            duration: 5000,
-            style: {
-                background: "linear-gradient(45deg, red, blue)"
-            }
-        }).showToast();
-    </script>
+<script>
+    Toastify({
+        text: 'Informação já existente!',
+        duration: 5000,
+        style: {
+            background: "linear-gradient(45deg, red, blue)"
+        }
+    }).showToast();
+</script>
 @endif

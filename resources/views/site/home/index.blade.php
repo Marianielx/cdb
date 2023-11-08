@@ -25,8 +25,10 @@
                 <h2>Pessoas</h2>
                 <p>A Procura de pessoas desaparecidas é um critério de preocupação:</p>
             </div>
+            
             <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4 portfolio-container">
+                    @if(!$data->isEmpty())
                     @foreach ($data as $item)
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
                         <div class="portfolio-wrap">
@@ -44,6 +46,15 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div class="container">
+                        <div class="row">
+                            <div class="alert alert-warning mb-3">
+                                Nenhuma Informação foi encontrada.
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

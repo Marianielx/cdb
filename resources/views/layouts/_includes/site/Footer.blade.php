@@ -1,5 +1,4 @@
-<footer id="footer" class="footer"
-    style="background-image: url('{{ asset('site/img/circulo.png') }}'); background-position: center; 
+<footer id="footer" class="footer" style="background-image: url('{{ asset('site/img/circulo.png') }}'); background-position: center; 
 background-size: cover;
 background-repeat: no-repeat; ">
 
@@ -11,10 +10,8 @@ background-repeat: no-repeat; ">
                 </a> -->
                 <p>Portal Central da Banda</p>
                 <div class="social-links d-flex mt-4">
-                    <a target="_blank" href="https://www.facebook.com/infosi.nacional" class="facebook"><i
-                            class="bi bi-facebook"></i></a>
-                    <a target="_blank" href="https://www.linkedin.com/company/infosinacional/" class="linkedin "><i
-                            class="bi bi-linkedin"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/infosi.nacional" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/company/infosinacional/" class="linkedin "><i class="bi bi-linkedin"></i></a>
                 </div>
 
 
@@ -60,8 +57,7 @@ background-repeat: no-repeat; ">
 </footer><!-- End Footer -->
 <!-- End Footer -->
 
-<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <div class="preloader-wrapper">
     <div class="preloader-wrapper">
@@ -80,40 +76,52 @@ background-repeat: no-repeat; ">
 <script src="/site/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <script src="/site/vendor/php-email-form/validate.js"></script>
 <script src="/js/sweetalert2.all.min.js"></script>
+
+@yield('scriptsupdate')
+
 <!-- Template Main JS File -->
 <script src="/site/js/main.js"></script>
 
 @yield('scripts')
 
 @if (session('helpCreate'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Mensagem enviada com sucesso!',
-            text: 'Obrigado por nos contactar!',
-            showConfirmButton: true
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Mensagem enviada com sucesso!',
+        text: 'Obrigado por nos contactar!',
+        showConfirmButton: true
+    })
+</script>
 @elseif (session('create'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Registrado com sucesso!',
-            text: 'Consulte a caixa de entrada do email que informou!',
-            showConfirmButton: true
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Registrado com sucesso!',
+        text: '',
+        showConfirmButton: true
+    })
+</script>
+@elseif (session('edit'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Editado com successo!',
+        text: '',
+        showConfirmButton: true
+    })
+</script>
 @elseif (session('error'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Atenção',
-            text: 'Tente novamente ou contacte a área de suporte',
-            showConfirmButton: true
-        })
-    </script>
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Atenção',
+        text: 'Tente novamente ou contacte a área de suporte',
+        showConfirmButton: true
+    })
+</script>
 @endif
 
 @yield('JS')
-
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="/js/4.1.1.bootstrap.min.js"></script>
+<script src="/js/2.1.0.sweetalert.min.js"></script>

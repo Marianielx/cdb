@@ -12,8 +12,6 @@
         </div>
     </div>
 </section>
-
-
 <header id="header" class="header d-flex align-items-center">
 
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
@@ -43,7 +41,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('site.person.list') }}">
+                            <hr>
                             <p class="text-dark">{{ __('Minha Pessoa')}}</p>
+                            <hr>
                         </a>
                         <hr>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -57,10 +57,8 @@
                 </li>
                 @endguest
             </ul>
-        </nav><!-- .navbar -->
-
+        </nav>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
     </div>
-</header><!-- End Header -->
+</header>

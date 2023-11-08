@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
-class Internship extends Model
+class vehicle extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'internships';
+    protected $table = 'vehicles';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
 }

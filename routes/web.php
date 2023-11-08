@@ -26,6 +26,8 @@ Route::middleware(['auth'])->group(function () {
     route::post('/missing-person-store', ['as' => 'user.person.store', 'uses' => 'Site\PersonController@store']);
     route::get('/missing-person/detail/{id}', ['as' => 'user.person.detail', 'uses' => 'Site\PersonController@details']);
     route::get('/missing-person/search', ['as' => 'user.person.search', 'uses' => 'Site\PersonController@search']);
+    route::put('/missing-person/updateClose/{id}', ['as' => 'user.person.updateClose', 'uses' => 'Site\PersonController@destroy']);
+    route::put('/missing-person/updateOpen/{id}', ['as' => 'user.person.updateOpen', 'uses' => 'Site\PersonController@update']);
     /** END PERSON ROUTE **/
 
     /** BEGIN PERSON COMMENT ROUTE **/
