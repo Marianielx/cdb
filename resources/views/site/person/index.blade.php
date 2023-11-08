@@ -48,11 +48,33 @@
                                 <h4>{{ $item->fullname }}</h4>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <p class="mb-1 text-dark">Data: {{ date('d-m-Y', strtotime($item->missingdate)) }} </p>
+                                    <div class="col-md-5">
+                                        <p class="mb-1 text-dark">{{ date('d-m-Y', strtotime($item->missingdate)) }} </p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
+                                        @if($item->state == 'Encontrado')
+                                        <p class="mb-1 text-primary">{{ $item->state }}</p>
+                                        @endif
+                                        @if($item->state == 'Procura-se')
                                         <p class="mb-1 text-danger">{{ $item->state }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-2">
+                                        @if($item->state == 'Encontrado')
+                                        <form action="{{ route('user.person.updateOpen', $item->id) }}" method="POST">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="put">
+                                            <button type="submit" class="btn btn-xs btn-outline-primary btn-flat show_confirm_open btn-sm" data-toggle="tooltip" title='Activar'><i class="bi bi-pencil-square"></i></button>
+                                        </form>
+                                        @endif
+                                        
+                                        @if($item->state == 'Procura-se')
+                                        <form action="{{ route('user.person.updateClose', $item->id) }}" method="POST">
+                                            @csrf
+                                            <input name="_method" type="hidden" value="put">
+                                            <button type="submit" class="btn btn-xs btn-outline-danger btn-flat show_confirm_close btn-sm" data-toggle="tooltip" title='Inactivar'><i class="bi bi-x-circle"></i></button>
+                                        </form>
+                                        @endif
                                     </div>
                                 </div>
                                 <hr>
@@ -81,7 +103,7 @@
             <div class="modal-body">
                 <div class="col-md-12 mb-1">
                     <label class="label-control">Nome Completo</label>
-                    <input type="text" id="fullname" class="form-control" readonly>
+                    <h3><input type="text" id="fullname" class="form-control" readonly></h3>
                 </div>
                 <div class="col-md-12 mb-1">
                     <label class="label-control">Apelido Ou Alcunha</label>
@@ -257,6 +279,49 @@
                 }
             });
         });
+    });
+</script>
+
+@endsection
+
+@section('JS')
+<script>
+    $('.show_confirm_close').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+                title: `Deseja Inactivar Procura?`,
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
+    });
+</script>
+
+<script>
+    $('.show_confirm_open').click(function(event) {
+        var form = $(this).closest("form");
+        var name = $(this).data("name");
+        event.preventDefault();
+        swal({
+                title: `Deseja Activar Procura?`,
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                }
+            });
     });
 </script>
 

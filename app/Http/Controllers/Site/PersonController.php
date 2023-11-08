@@ -20,6 +20,12 @@ class PersonController extends Controller
 
     public function index()
     {
+        $response['data'] = Person::where('state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
+        return view('site.person.index', $response);
+    }
+
+    public function list()
+    {
         $response['data'] = Person::where('fk_userId', Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.person.index', $response);
     }
@@ -112,7 +118,25 @@ class PersonController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $response['data'] = Person::where('fk_userId', Auth::user()->id)->where('fullname', "Like", "%" . $search . "%")->Orwhere('nickname', $search)->paginate(3);
+        $response['data'] = Person::where('fk_userId', Auth::user()->id)->Orwhere('state', 'Procura-se')->Orwhere('fullname', 'Like', '%' . $search . '%')->Orwhere('nickname', $search)->paginate(3);
         return view('site.person.index', $response);
+    }
+
+    public function destroy($id)
+    {
+        Person::find($id)->update(
+            ['state' => 'Encontrado',]
+        );
+        return redirect()->route('site.person.index')->with('edit', '1');
+        $this->Logger->log('info', 'Inactivated the state - User Nº:' . Auth::user()->id);
+    }
+
+    public function update($id)
+    {
+        Person::find($id)->update(
+            ['state' => 'Procura-se',]
+        );
+        return redirect()->route('site.person.index')->with('edit', '1');
+        $this->Logger->log('info', 'Activated the state - User Nº:' . Auth::user()->id);
     }
 }

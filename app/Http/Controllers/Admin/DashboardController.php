@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\Logger;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{AngolaOnline, ImageGallery, Internship, Log, Service, User};
+use App\Models\{Log, Person, personComment, User};
 
 class DashboardController extends Controller
 {
@@ -16,16 +16,11 @@ class DashboardController extends Controller
         $this->Logger = new Logger();
     }
 
-
     public function index()
     {
-
         $response['count_users'] = User::count();
-        $response['count_services'] = Service::count();
-        $response['count_points'] = AngolaOnline::count();
-        $response['count_inclusions'] = ImageGallery::count();
-        $response['internship'] = Internship::where("state", 'Submetido')->count();
-        $response['data_internship'] = Internship::OrderBy('id', 'desc')->where("state", 'Submetido')->get();
+        $response['count_people'] = Person::count();
+        $response['count_comments'] = personComment::count();
         
         $jan = Log::where('USER_ID', Auth::user()->id)
             ->whereMonth('created_at', '=', 01)
@@ -84,7 +79,7 @@ class DashboardController extends Controller
             ->count();
         $response['dez'] = json_encode($dez);
 
-        $this->Logger->log('info', 'Entrou no Painel do INFOSI');
+        $this->Logger->log('info', 'Entrou no Painel da CDB');
 
         return view('admin.home.index', $response);
     }
