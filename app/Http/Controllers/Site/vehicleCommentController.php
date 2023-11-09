@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Site;
 use Exception;
 use App\Classes\Logger;
 use Illuminate\Http\Request;
-use App\Models\personComment;
+use App\Models\vehicleComment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class personCommentController extends Controller
+class vehicleCommentController extends Controller
 {
     private $Logger;
 
@@ -30,18 +30,18 @@ class personCommentController extends Controller
             ]
         );
         try {
-            personComment::create(
+            vehicleComment::create(
                 [
                     'body' => $request->body,
-                    'fk_personId' => $request->person_id,
+                    'fk_vehicleId' => $request->vehicle_id,
                     'fk_userId' => Auth::user()->id,
                 ]
             );
         } catch (Exception $e) {
             return redirect()->back()->with('catch', '1');
         }
-        return redirect()->route('site.person.index')->with('create', '1');
-        $this->Logger->log('info', 'Person Commentary saved - User Nº:' . Auth::user()->id);
+        return redirect()->route('site.vehicle.index')->with('create', '1');
+        $this->Logger->log('info', 'Vehicle Commentary saved - User Nº:' . Auth::user()->id);
     }
 
     public function storeAs(Request $request, $id)
@@ -56,10 +56,10 @@ class personCommentController extends Controller
             ]
         );
         try {
-            personComment::create(
+            vehicleComment::create(
                 [
                     'body' => $request->body,
-                    'fk_personId' => $id,
+                    'fk_vehicleId' => $id,
                     'fk_userId' => Auth::user()->id,
                 ]
             );
@@ -67,6 +67,6 @@ class personCommentController extends Controller
             return redirect()->back()->with('catch', '1');
         }
         return redirect()->back()->with('create', '1');
-        $this->Logger->log('info', 'Person Commentary saved - User Nº:' . Auth::user()->id . ' logged');
+        $this->Logger->log('info', 'Vehicle Commentary saved - User Nº:' . Auth::user()->id . ' logged');
     }
 }

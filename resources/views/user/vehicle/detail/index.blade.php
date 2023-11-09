@@ -13,73 +13,58 @@
         </div>
 
         <div class="form-group col-md-6">
-            <h2>{{ $data->fullname }}</h2>
+            <h2>{{ $data->vehicle_ownername }}</h2>
+            <hr>
+            <div class="form-group col-md-6">
+                <p><b>Marca: </b>{{ $data->vehicle_brand }} - {{ $data->vehicle_color }}</p>
+            </div>
             <hr>
             <div class="row">
-                <div class="form-group col-md-6">
-                    <h6><b>Apelido:</b> {{ $data->nickname }}</h6>
-                </div>
-                <div class="form-group col-md-6">
-                    <h6><b>Bairro:</b> {{ $data->neighborhood }}</h6>
+                <div class="form-group col-md-12">
+                    <h6><b>Endereço:</b> {{ $data->vehicle_owneraddress }}</h6>
                 </div>
                 <hr>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>Números do Telefone:</b></p>
+                    <h6><b>Telefone Nº:</b> {{ $data->vehicle_ownertelephone }}</h6>
                 </div>
                 <div class="form-group col-md-6">
-                    <p>{{ $data->phoneOne }} / {{ $data->phoneTwo }}</p>
-                </div>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <p><b>Sobre de Pertubação Mental:</b></p>
-                </div>
-                <div class="form-group col-md-6">
-                    <p>{{ $data->mental_diase }}</p>
+                    <h6><b>Matricula Nº:</b> {{ $data->vehicle_card_number }}</h6>
                 </div>
                 <hr>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>É Mudo e Surdo:</b></p>
+                    <p><b>Chassi Nº:</b> {{ $data->vehicle_chasis_number }}</p>
                 </div>
                 <div class="form-group col-md-6">
-                    <p>{{ $data->mute_and_deaf }}</p>
-                </div>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <p><b>Não Consegue ver:</b></p>
-                </div>
-                <div class="form-group col-md-6">
-                    <p>{{ $data->can_not_see }}</p>
+                <p><b>Motor Nº:</b> {{ $data->vehicle_engine_number}}</p>
                 </div>
                 <hr>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>Informação da Esquadra Policial:</b></p>
+                    <p><b>Placa Nº:</b> {{ $data->vehicle_board_number}}</p>
                 </div>
                 <div class="form-group col-md-6">
-                    <p>{{ $data->watchStation }} / {{ $data->watchPhone }}</p>
+                    <p><b>Tipo de Locomotiva:</b> {{ $data->vehicle_type}}</p>
                 </div>
             </div>
         </div>
         <hr>
         <div class="form-group">
-            <h4>({{ $count_comments }}) :: Comentários a respeito de: ' {{ $data->nickname }} '</h4>
+            <h4>({{ $count_comments }}) :: Comentários a respeito de: ' {{ $data->vehicle_ownername }} '</h4>
             <hr>
         </div>
-        @include('user.personComment.create.index')
+        @include('user.vehicleComment.create.index')
         <hr>
         @foreach($comment as $comments)
         <p style="color: gray;"><b>{{ $comments->users_name->getFullName() }}</b></p>
         <p>{{ $comments->body }}</p>
-        <a href=""><span><p>{{ $comments->created_at->diffForHumans() }}</p></span></a>
+        <a href=""><span>
+                <p>{{ $comments->created_at->diffForHumans() }}</p>
+            </span></a>
         @endforeach
     </div>
 </div>

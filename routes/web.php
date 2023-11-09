@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 /* HOME */
+
 route::get('/', ['as' => 'site.home', 'uses' => 'Site\HomeController@index']);
 
 /* Terms */
@@ -36,16 +37,22 @@ Route::middleware(['auth'])->group(function () {
     route::post('/user/personComment/store/{id}', ['as' => 'user.personComment.storeAs', 'uses' => 'Site\personCommentController@storeAs']);
     /** END PERSON COMMENT ROUTE **/
 
-     /** BEGIN VEHICLE ROUTE **/
-     route::get('/missing-vehicle', ['as' => 'site.vehicle.index', 'uses' => 'Site\VehicleController@index']);
-     route::get('/my-vehicle', ['as' => 'site.vehicle.list', 'uses' => 'Site\VehicleController@list']);
-     route::get('/missing-vehicle-create', ['as' => 'user.vehicle.create', 'uses' => 'Site\VehicleController@create']);
-     route::post('/missing-vehicle-store', ['as' => 'user.vehicle.store', 'uses' => 'Site\VehicleController@store']);
-     route::get('/missing-vehicle/detail/{id}', ['as' => 'user.vehicle.detail', 'uses' => 'Site\VehicleController@details']);
-     route::get('/missing-vehicle/search', ['as' => 'user.vehicle.search', 'uses' => 'Site\VehicleController@search']);
-     route::put('/missing-vehicle/updateClose/{id}', ['as' => 'user.vehicle.updateClose', 'uses' => 'Site\VehicleController@destroy']);
-     route::put('/missing-vehicle/updateOpen/{id}', ['as' => 'user.vehicle.updateOpen', 'uses' => 'Site\VehicleController@update']);
-     /** END VEHICLE ROUTE **/
+    /** BEGIN VEHICLE ROUTE **/
+    route::get('/missing-vehicle', ['as' => 'site.vehicle.index', 'uses' => 'Site\VehicleController@index']);
+    route::get('/my-vehicle', ['as' => 'site.vehicle.list', 'uses' => 'Site\VehicleController@list']);
+    route::get('/missing-vehicle-create', ['as' => 'user.vehicle.create', 'uses' => 'Site\VehicleController@create']);
+    route::post('/missing-vehicle-store', ['as' => 'user.vehicle.store', 'uses' => 'Site\VehicleController@store']);
+    route::get('/missing-vehicle/detail/{id}', ['as' => 'user.vehicle.detail', 'uses' => 'Site\VehicleController@details']);
+    route::get('/missing-vehicle/vehicleGallery/{id}', ['as' => 'user.vehicleGallery.detail', 'uses' => 'Site\VehicleGalleryController@detail']);
+    route::get('/missing-vehicle/search', ['as' => 'user.vehicle.search', 'uses' => 'Site\VehicleController@search']);
+    route::put('/missing-vehicle/updateClose/{id}', ['as' => 'user.vehicle.updateClose', 'uses' => 'Site\VehicleController@destroy']);
+    route::put('/missing-vehicle/updateOpen/{id}', ['as' => 'user.vehicle.updateOpen', 'uses' => 'Site\VehicleController@update']);
+    /** END VEHICLE ROUTE **/
+
+    /** BEGIN PERSON COMMENT ROUTE **/
+    route::post('/user/vehicleComment/store', ['as' => 'user.vehicleComment.store', 'uses' => 'Site\vehicleCommentController@store']);
+    route::post('/user/vehicleComment/store/{id}', ['as' => 'user.vehicleComment.storeAs', 'uses' => 'Site\vehicleCommentController@storeAs']);
+    /** END PERSON COMMENT ROUTE **/
 });
 
 /* inclui as rotas de autenticação do ficheiro auth.php */

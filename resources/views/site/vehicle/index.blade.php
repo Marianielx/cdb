@@ -80,10 +80,11 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm"><i class="bi bi-eye"></i></button>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-warning commentbtn btn-sm"><i class="bi bi-chat"></i></button>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm"><i class="bi bi-view-stacked"></i></a></button>
-                                <button type="button" class="btn btn-secondary btn-sm"><a href="{{ route('user.vehicle.detail', $item->id) }}"><i class="bi bi-info-circle"></i></a></button>
+                                <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm" data-toggle="tooltip" title='Visualizar Informações'><i class="bi bi-eye"></i></button>
+                                <button type="button" value="{{ $item->id }}" class="btn btn-warning commentbtn btn-sm" data-toggle="tooltip" title='Comentar'><i class="bi bi-chat"></i></button>
+                                <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></a></button>
+                                <button type="button" class="btn btn-secondary btn-sm"><a href="{{ route('user.vehicle.detail', $item->id) }}" data-toggle="tooltip" title='Informações Detalhadas'><i class="bi bi-info-circle"></i></a></button>
+                                <button type="button" class="btn btn-success btn-sm"><a href="{{ route('user.vehicleGallery.detail', $item->id) }}" data-toggle="tooltip" title='Anexar Imagem'><i class="bi bi-file-image"></i></a></button>
                             </div>
                         </div>
                     </div>
@@ -158,14 +159,14 @@
             </div>
 
             @include('errors.form')
-            <form action='{{ url("user/personComment/store") }}' method="POST">
+            <form action='{{ url("user/vehicleComment/store") }}' method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-floating">
-                        <input type="hidden" name="person_id" id="person_id" value="{{ old('person_id') }}" class="form-control" readonly>
+                        <input type="hidden" name="vehicle_id" id="vehicle_id" value="{{ old('vehicle_id') }}" class="form-control" readonly>
                     </div>
                     <div class="col-md-12 mb-1">
-                        <input type="text" id="fullnamec" style="font-size: larger;" class="form-control" readonly>
+                        <input type="text" id="ownernamec" style="font-size: larger;" class="form-control" readonly>
                     </div>
                     <div class="col-md-12 mb-1">
                         <h5 class="card-title">Corpo da comentário</h5>
@@ -193,7 +194,7 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-12 mb-1">
-                    <input type="text" id="fullnamed" style="font-size: larger;" class="form-control" readonly>
+                    <input type="text" id="ownernamed" style="font-size: larger;" class="form-control" readonly>
                 </div>
                 <div class="col-md-12 mb-1">
                     <textarea class="form-control" id="message" style="height: 12rem" readonly></textarea>
@@ -242,16 +243,14 @@
 <script>
     $(document).ready(function() {
         $(document).on('click', '.commentbtn', function() {
-            var person_id = $(this).val();
+            var vehicle_id = $(this).val();
             $('#CommentModal').modal('show');
             $.ajax({
                 type: "GET",
-                url: "/missing-person/show/" + person_id,
+                url: "/missing-vehicle/show/" + vehicle_id,
                 success: function(response) {
-                    $('#person_id').val(response.person.id);
-                    $('#fullnamec').val(response.person.fullname);
-                    $('#nicknamec').val(response.person.nickname);
-                    $('#neighborhoodc').val(response.person.neighborhood);
+                    $('#vehicle_id').val(response.vehicle.id);
+                    $('#ownernamec').val(response.vehicle.vehicle_ownername);
                 }
             });
         });
@@ -261,14 +260,14 @@
 <script>
     $(document).ready(function() {
         $(document).on('click', '.descriptionbtn', function() {
-            var person_id = $(this).val();
+            var vehicle_id = $(this).val();
             $('#descriptionModal').modal('show');
             $.ajax({
                 type: "GET",
-                url: "/missing-person/show/" + person_id,
+                url: "/missing-vehicle/show/" + vehicle_id,
                 success: function(response) {
-                    $('#fullnamed').val(response.person.fullname);
-                    $('#message').val(response.person.message);
+                    $('#ownernamed').val(response.vehicle.vehicle_ownername);
+                    $('#message').val(response.vehicle.message);
                 }
             });
         });
