@@ -112,7 +112,7 @@ class PersonController extends Controller
             return redirect()->back()->with('catch', '1');
         }
         return redirect()->route('site.person.index')->with('create', '1');
-        $this->Logger->log('info', 'Saved - User Nº:' . Auth::user()->id);
+        $this->Logger->log('info', 'Person Saved - User Nº:' . Auth::user()->id);
     }
 
     public function search(Request $request)
@@ -128,7 +128,7 @@ class PersonController extends Controller
             ['state' => 'Encontrado',]
         );
         return redirect()->route('site.person.index')->with('edit', '1');
-        $this->Logger->log('info', 'Inactivated the state - User Nº:' . Auth::user()->id);
+        $this->Logger->log('info', 'Person Inactivated the state - User Nº:' . Auth::user()->id);
     }
 
     public function update($id)
@@ -137,6 +137,6 @@ class PersonController extends Controller
             ['state' => 'Procura-se',]
         );
         return redirect()->route('site.person.index')->with('edit', '1');
-        $this->Logger->log('info', 'Activated the state - User Nº:' . Auth::user()->id);
+        $this->Logger->log('info', 'Person Activated the state - User Nº:' . Auth::user()->id);
     }
 }

@@ -10,6 +10,7 @@ route::get('/terms', ['as' => 'site.terms', 'uses' => 'Site\TermsController@inde
 
 /** BEGIN PERSON FREE ROUTE **/
 route::get('/missing-person/show/{id}', ['as' => 'user.person.show', 'uses' => 'Site\PersonController@show']);
+route::get('/missing-vehicle/show/{id}', ['as' => 'user.vehicle.show', 'uses' => 'Site\VehicleController@show']);
 Route::post('visitor-store', ['as' => 'visitor.user.store', 'uses' => 'Visitor\UserController@store']);
 route::get('/missing-people/search', ['as' => 'site.home.search', 'uses' => 'Site\HomeController@search']);
 /** END PERSON ROUTE **/
@@ -34,6 +35,17 @@ Route::middleware(['auth'])->group(function () {
     route::post('/user/personComment/store', ['as' => 'user.personComment.store', 'uses' => 'Site\personCommentController@store']);
     route::post('/user/personComment/store/{id}', ['as' => 'user.personComment.storeAs', 'uses' => 'Site\personCommentController@storeAs']);
     /** END PERSON COMMENT ROUTE **/
+
+     /** BEGIN VEHICLE ROUTE **/
+     route::get('/missing-vehicle', ['as' => 'site.vehicle.index', 'uses' => 'Site\VehicleController@index']);
+     route::get('/my-vehicle', ['as' => 'site.vehicle.list', 'uses' => 'Site\VehicleController@list']);
+     route::get('/missing-vehicle-create', ['as' => 'user.vehicle.create', 'uses' => 'Site\VehicleController@create']);
+     route::post('/missing-vehicle-store', ['as' => 'user.vehicle.store', 'uses' => 'Site\VehicleController@store']);
+     route::get('/missing-vehicle/detail/{id}', ['as' => 'user.vehicle.detail', 'uses' => 'Site\VehicleController@details']);
+     route::get('/missing-vehicle/search', ['as' => 'user.vehicle.search', 'uses' => 'Site\VehicleController@search']);
+     route::put('/missing-vehicle/updateClose/{id}', ['as' => 'user.vehicle.updateClose', 'uses' => 'Site\VehicleController@destroy']);
+     route::put('/missing-vehicle/updateOpen/{id}', ['as' => 'user.vehicle.updateOpen', 'uses' => 'Site\VehicleController@update']);
+     /** END VEHICLE ROUTE **/
 });
 
 /* inclui as rotas de autenticação do ficheiro auth.php */
