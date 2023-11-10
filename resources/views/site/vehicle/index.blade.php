@@ -159,7 +159,7 @@
             </div>
 
             @include('errors.form')
-            <form action='{{ url("user/vehicleComment/store") }}' method="POST">
+            <form action='{{ url("user/vehicleComment/store/{id}") }}' method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-floating">

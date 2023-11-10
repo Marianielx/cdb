@@ -102,6 +102,15 @@ background-repeat: no-repeat; ">
         showConfirmButton: true
     })
 </script>
+@elseif (session('create_image'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Registrado com sucesso!',
+        text: 'Imagens anexadas',
+        showConfirmButton: true
+    })
+</script>
 @elseif (session('edit'))
 <script>
     Swal.fire({

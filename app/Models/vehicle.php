@@ -11,4 +11,9 @@ class vehicle extends Model
     protected $table = 'vehicles';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
+
+    public function images()
+    {
+        return $this->hasMany(vehicleGallery::class, 'fk_idvehicle');
+    }
 }

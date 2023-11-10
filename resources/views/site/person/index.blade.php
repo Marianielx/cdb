@@ -1,5 +1,7 @@
 @extends('layouts.merge.site')
+
 @section('title', 'Pessoas Desaparecidas')
+
 @section('content')
 
 <div class="row mt-1 mb-3">

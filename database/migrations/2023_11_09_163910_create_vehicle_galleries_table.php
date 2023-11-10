@@ -6,24 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateVehicleGalleriesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('vehicle_galleries', function (Blueprint $table) {
             $table->id();
+            $table->string('path')->nullable();
+            $table->unsignedBigInteger('fk_idvehicle');
+            $table->foreign('fk_idvehicle')->references('id')->on('vehicles')->onDelete('CASCADE')->onUpgrade('CASCADE');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::dropIfExists('vehicle_galleries');
