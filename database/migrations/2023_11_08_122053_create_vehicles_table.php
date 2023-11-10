@@ -20,12 +20,13 @@ class CreateVehiclesTable extends Migration
             $table->string('vehicle_board_number', 50);
             $table->string('vehicle_card_number', 20);
             $table->string('vehicle_color', 20);
-            $table->string('missingdate');
-            $table->longText('message');
-            $table->string('image', 255);
+            $table->string('vehicle_missingdate');
+            $table->longText('vehicle_message');
+            $table->string('vehicle_image', 255);
             $table->unsignedBigInteger('fk_userId');
             $table->foreign('fk_userId')->references('id')->on('users')->onDelete('CASCADE')->onUpgrade('CASCADE');
-            $table->string('state', 25);
+            $table->string('vehicle_state', 25);
+            $table->string('vehicle_focus', 255);
             $table->softDeletes();
             $table->timestamps();
         });

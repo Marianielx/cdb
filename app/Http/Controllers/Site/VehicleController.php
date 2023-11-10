@@ -20,7 +20,7 @@ class VehicleController extends Controller
 
     public function index()
     {
-        $response['data'] = vehicle::where('state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = vehicle::where('vehicle_state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
@@ -58,7 +58,8 @@ class VehicleController extends Controller
             $request,
             [
                 'vehicle_type' => 'required|min:3|max:10',
-                'image' => 'required|image|mimes:jpg,png,jpeg|max:5048',
+                'vehicle_focus' => 'required|min:3|max:10',
+                'vehicle_image' => 'required|image|mimes:jpg,png,jpeg|max:5048',
                 'vehicle_ownername' => 'required|min:3|max:255',
                 'vehicle_ownertelephone' => 'required|min:9|max:20',
                 'vehicle_owneraddress' => 'required|min:9|max:255',
@@ -68,12 +69,13 @@ class VehicleController extends Controller
                 'vehicle_chasis_number' => 'required|min:5|max:50',
                 'vehicle_engine_number' => 'required|min:5|max:50',
                 'vehicle_board_number' => 'required|min:5|max:50',
-                'missingdate' => 'date',
-                'message' => 'required|min:5',
+                'vehicle_missingdate' => 'date',
+                'vehicle_message' => 'required|min:5',
             ],
             [
-                'vehicle_type.required' => 'Informar o nome completo',
-                'image.required' => 'Informar a imagem',
+                'vehicle_type.required' => 'Informar o tipo de locomotiva',
+                'vehicle_focus.required' => 'Informar a peça em destaque',
+                'vehicle_image.required' => 'Informar a imagem',
                 'vehicle_ownername.required' => 'Informar o nome do proprietário',
                 'vehicle_ownertelephone.required' => 'Informar o número do telefone do propretário',
                 'vehicle_owneraddress.required' => 'Informar o endereço do proprietário',
@@ -83,16 +85,17 @@ class VehicleController extends Controller
                 'vehicle_chasis_number.required' => 'Informar o número do chassi',
                 'vehicle_engine_number.required' => 'Informar o número do motor',
                 'vehicle_board_number.required' => 'Informar o número da placa',
-                'missingdate.required' => 'Selecionar a data do desaparecimento',
-                'message.required' => 'Informar a mensagem de apelação',
+                'vehicle_missingdate.required' => 'Selecionar a data do desaparecimento',
+                'vehicle_message.required' => 'Informar a mensagem de apelação',
             ]
         );
-        $file = $request->file('image')->store('missing-vehicle-gallery');
+        $file = $request->file('vehicle_image')->store('missing-vehicle-gallery');
         try {
             vehicle::create(
                 [
                     'vehicle_type' => $request->vehicle_type,
-                    'image' => $file,
+                    'vehicle_focus' => $request->vehicle_focus,
+                    'vehicle_image' => $file,
                     'vehicle_ownername' => $request->vehicle_ownername,
                     'vehicle_ownertelephone' => $request->vehicle_ownertelephone,
                     'vehicle_owneraddress' => $request->vehicle_owneraddress,
@@ -102,10 +105,10 @@ class VehicleController extends Controller
                     'vehicle_chasis_number' => $request->vehicle_chasis_number,
                     'vehicle_engine_number' => $request->vehicle_engine_number,
                     'vehicle_board_number' => $request->vehicle_board_number,
-                    'missingdate' => $request->missingdate,
-                    'message' => $request->message,
+                    'vehicle_missingdate' => $request->vehicle_missingdate,
+                    'vehicle_message' => $request->vehicle_message,
                     'fk_userId' => Auth::user()->id,
-                    'state' => 'Procura-se',
+                    'vehicle_state' => 'Procura-se',
                 ]
             );
         } catch (Exception $e) {
@@ -118,14 +121,14 @@ class VehicleController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->Orwhere('state', 'Procura-se')->Orwhere('fullname', 'Like', '%' . $search . '%')->Orwhere('nickname', $search)->paginate(3);
+        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->Orwhere('vehicle_state', 'Procura-se')->Orwhere('fullname', 'Like', '%' . $search . '%')->Orwhere('nickname', $search)->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
     public function destroy($id)
     {
         vehicle::find($id)->update(
-            ['state' => 'Encontrado',]
+            ['vehicle_state' => 'Encontrado',]
         );
         return redirect()->route('site.person.index')->with('edit', '1');
         $this->Logger->log('info', 'Vehicle Inactivated the state - User Nº:' . Auth::user()->id);
@@ -134,7 +137,7 @@ class VehicleController extends Controller
     public function update($id)
     {
         vehicle::find($id)->update(
-            ['state' => 'Procura-se',]
+            ['vehicle_state' => 'Procura-se',]
         );
         return redirect()->route('site.vehicle.index')->with('edit', '1');
         $this->Logger->log('info', 'Vehicle Activated the state - User Nº:' . Auth::user()->id);

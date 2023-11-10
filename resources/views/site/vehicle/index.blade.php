@@ -1,6 +1,6 @@
 @extends('layouts.merge.site')
 
-@section('title', 'Locomotiva')
+@section('title', 'Portal Central Da Banda - Locomotiva')
 
 @section('content')
 
@@ -44,25 +44,25 @@
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
                         <div class="portfolio-wrap">
                             <div style="height: 350px">
-                                <a href="{{ url("/storage/$item->image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->image") }}" class="img-fluid" alt="" style="height:100%; width:100%;"></a>
+                                <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid" alt="" style="height:100%; width:100%;"></a>
                             </div>
                             <div class="portfolio-info">
                                 <h4>{{ $item->vehicle_brand }}</h4>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <p class="mb-1 text-dark">{{ date('d-m-Y', strtotime($item->missingdate)) }} </p>
+                                        <p class="mb-1 text-dark">{{ date('d-m-Y', strtotime($item->vehicle_missingdate)) }} </p>
                                     </div>
                                     <div class="col-md-5">
-                                        @if($item->state == 'Encontrado')
-                                        <p class="mb-1 text-primary">{{ $item->state }}</p>
+                                        @if($item->vehicle_state == 'Encontrado')
+                                        <p class="mb-1 text-primary">{{ $item->vehicle_state }}</p>
                                         @endif
-                                        @if($item->state == 'Procura-se')
-                                        <p class="mb-1 text-danger">{{ $item->state }}</p>
+                                        @if($item->vehicle_state == 'Procura-se')
+                                        <p class="mb-1 text-danger">{{ $item->vehicle_state }}</p>
                                         @endif
                                     </div>
                                     <div class="col-md-2">
-                                        @if($item->state == 'Encontrado')
+                                        @if($item->vehicle_state == 'Encontrado')
                                         <form action="{{ route('user.vehicle.updateOpen', $item->id) }}" method="POST">
                                             @csrf
                                             <input name="_method" type="hidden" value="put">
@@ -70,7 +70,7 @@
                                         </form>
                                         @endif
 
-                                        @if($item->state == 'Procura-se')
+                                        @if($item->vehicle_state == 'Procura-se')
                                         <form action="{{ route('user.vehicle.updateClose', $item->id) }}" method="POST">
                                             @csrf
                                             <input name="_method" type="hidden" value="put">
