@@ -7,8 +7,8 @@
 <div class="container mt-1">
     <div class="row">
         <div class="form-group col-md-6">
-            <a href="{{ url("/storage/$data->image") }}" class="glightbox">
-                <img src="{{ url("/storage/$data->image") }}" alt="{{ $data->image }}" class="img-fluid" alt="" style="height:100%; width:100%;" />
+            <a href="{{ url("/storage/$data->vehicle_image") }}" class="glightbox">
+                <img src="{{ url("/storage/$data->vehicle_image") }}" alt="{{ $data->vehicle_image }}" class="img-fluid" alt="" style="height:100%; width:100%;" />
             </a>
         </div>
 
@@ -54,7 +54,6 @@
             <hr>
             <div class="row align-items-center my-4">
                 <div class="col">
-                    <!-- <h2 class="page-title">Imagem: <button type="button" value="{{ $data->id }}" class="btn btn-lg btn-default text-dark Showbtn">{{ $count }}</button></h2> -->
                     <h2 class="page-title">Imagem: <a value="{{ $data->id }}" class="Showbtn" style="cursor: pointer;">{{ $count }}</a></h2>
                 </div>
                 <div class="col-auto">

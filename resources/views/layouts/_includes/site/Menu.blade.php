@@ -24,8 +24,8 @@
                 <li><a href="{{ route('site.home') }}">Home</a></li>
                 @guest
                 @if (Route::has('login'))
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.home') }}">Pessoas</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">Locomotivas</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.home.person') }}">Pessoas</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.home.vehicle') }}">Locomotivas</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('login') }}">{{ __('Entrar') }}</a></li>
                 @endif
                 @if (Route::has('register'))

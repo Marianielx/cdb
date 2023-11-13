@@ -4,16 +4,6 @@
 
 @section('content')
 
-<div class="row mt-1 mb-3">
-    <div class="col-4">
-    </div>
-    <div class="col-4 d-flex justify-content-center">
-    </div>
-    <div class="col-4">
-        <button type="button" class="btn btn-outline-warning float-right"><a href="{{ route('user.vehicle.create') }}"><i class="bi bi-plus"></i></a></button>
-    </div>
-</div>
-
 <main id="main">
     <section id="portfolio" class="portfolio sections-bg">
         <div class="container" data-aos="fade-up">
@@ -59,41 +49,19 @@
                                 <h4>{{ $item->vehicle_brand }}</h4>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <p class="mb-1 text-dark">{{ date('d-m-Y', strtotime($item->vehicle_missingdate)) }} </p>
                                     </div>
-                                    <div class="col-md-5">
-                                        @if($item->vehicle_state == 'Encontrado')
-                                        <p class="mb-1 text-primary">{{ $item->vehicle_state }}</p>
-                                        @endif
-                                        @if($item->vehicle_state == 'Procura-se')
-                                        <p class="mb-1 text-danger">{{ $item->vehicle_state }}</p>
-                                        @endif
+                                    <div class="col-md-1">
                                     </div>
-                                    <div class="col-md-2">
-                                        @if($item->vehicle_state == 'Encontrado')
-                                        <form action="{{ route('user.vehicle.updateOpen', $item->id) }}" method="POST">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="put">
-                                            <button type="submit" class="btn btn-xs btn-outline-primary btn-flat show_confirm_open btn-sm" data-toggle="tooltip" title='Activar'><i class="bi bi-pencil-square"></i></button>
-                                        </form>
-                                        @endif
-
-                                        @if($item->vehicle_state == 'Procura-se')
-                                        <form action="{{ route('user.vehicle.updateClose', $item->id) }}" method="POST">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="put">
-                                            <button type="submit" class="btn btn-xs btn-outline-danger btn-flat show_confirm_close btn-sm" data-toggle="tooltip" title='Inactivar'><i class="bi bi-x-circle"></i></button>
-                                        </form>
-                                        @endif
+                                    <div class="col-md-5">
+                                        <p class="mb-1 text-danger">{{ $item->vehicle_state }}</p>
                                     </div>
                                 </div>
                                 <hr>
                                 <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm" data-toggle="tooltip" title='Visualizar Informações'><i class="bi bi-eye"></i></button>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-warning commentbtn btn-sm" data-toggle="tooltip" title='Comentar'><i class="bi bi-chat"></i></button>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></a></button>
-                                <button type="button" class="btn btn-secondary btn-sm"><a href="{{ route('user.vehicle.detail', $item->id) }}" data-toggle="tooltip" title='Informações Detalhadas'><i class="bi bi-info-circle"></i></a></button>
-                                <button type="button" class="btn btn-success btn-sm"><a href="{{ route('user.vehicleGallery.detail', $item->id) }}" data-toggle="tooltip" title='Anexar Imagem'><i class="bi bi-file-image"></i></a></button>
+                                <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></button>
+                                <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title='Visualizar Imagem'><a href="{{ route('user.gallery.details', $item->id) }}"><i class="bi bi-file-image"></a></i></></button>
                             </div>
                         </div>
                     </div>
@@ -158,40 +126,54 @@
 </div>
 <!-- End Show Modal -->
 
-<!-- Comment Modal -->
-<div class="modal fade" id="CommentModal" tabindex="-1" aria-hidden="true">
+<!-- Image Modal -->
+<div class="modal" id="ImageModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-chat"></i> Comentário</h5>
+                <h5 class="modal-title"><i class="bi bi-file-image"></i> Imagem</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            @include('errors.form')
-            <form action='{{ url("user/vehicleComment/store/{id}") }}' method="POST">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-floating">
-                        <input type="hidden" name="vehicle_id" id="vehicle_id" value="{{ old('vehicle_id') }}" class="form-control" readonly>
-                    </div>
-                    <div class="col-md-12 mb-1">
-                        <input type="text" id="ownernamec" style="font-size: larger;" class="form-control" readonly>
-                    </div>
-                    <div class="col-md-12 mb-1">
-                        <h5 class="card-title">Corpo da comentário</h5>
-                        <p>Digite o comentário</p>
-                        <textarea name="body" style="min-height:100px; min-width:100%" class="form-control">{{ isset($data->body) ? $data->body : old('body') }}</textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
-                    <button type="submit" class="btn btn-primary">Comentar</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <section id="hero" class="hero" style="background-color: #fff; background-position: center;  background-size: cover; background-repeat: no-repeat;">
+                    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @if ($slideFirst)
+                            <div class="carousel-item active">
+                                <div class="slider-image center" style='background-position:center; background-size:initial; height:800px; width:100%;no-repeat;
+                        background-size:cover;
+                        background-image: url("/storage/{{ $slideFirst->path }}");
+                            '>
+                                </div>
+                            </div>
+                            @endif
+                            @isset($slideshows)
+                            @foreach ($slideshows as $item)
+                            <div class="carousel-item">
+                                <div class="slider-image center" style='background-position:center; background-size:initial; height:800px; width:100%;no-repeat;
+                        background-size:cover;
+                        background-image: url("/storage/{{ $item->path }}");
+                            '>
+                                </div>
+                            </div>
+                            @endforeach
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            @endisset
+                        </div>
+                </section>
+                <!-- </div> -->
+            </div>
         </div>
     </div>
 </div>
-<!-- End Show Modal -->
+<!-- End Image Modal -->
 
 <!-- Description Modal -->
 <div class="modal fade" id="descriptionModal" tabindex="-1" aria-hidden="true">
@@ -212,7 +194,7 @@
         </div>
     </div>
 </div>
-<!-- End Show Modal -->
+<!-- End Description Modal -->
 
 <div class="container">
     <div class="row">
@@ -251,23 +233,6 @@
 
 <script>
     $(document).ready(function() {
-        $(document).on('click', '.commentbtn', function() {
-            var vehicle_id = $(this).val();
-            $('#CommentModal').modal('show');
-            $.ajax({
-                type: "GET",
-                url: "/missing-vehicle/show/" + vehicle_id,
-                success: function(response) {
-                    $('#vehicle_id').val(response.vehicle.id);
-                    $('#ownernamec').val(response.vehicle.vehicle_ownername);
-                }
-            });
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function() {
         $(document).on('click', '.descriptionbtn', function() {
             var vehicle_id = $(this).val();
             $('#descriptionModal').modal('show');
@@ -275,8 +240,7 @@
                 type: "GET",
                 url: "/missing-vehicle/show/" + vehicle_id,
                 success: function(response) {
-                    $('#ownernamed').val(response.vehicle.vehicle_ownername);
-                    $('#message').val(response.vehicle.vehicle_message);
+                    $('#vehicle_id').val(response.vehicle.vehicle_id);
                 }
             });
         });

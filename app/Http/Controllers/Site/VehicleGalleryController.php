@@ -25,17 +25,23 @@ class VehicleGalleryController extends Controller
         return view('site.vehicleGallery.index', $response);
     }
 
+    public function show($id)
+    {
+        $data = VehicleGallery::find($id);
+        return response()->json([
+            'status' => 200,
+            'gallery' => $data,
+        ]);
+    }
+
     public function detail($id)
     {
         $response['data'] = vehicle::find($id);
-        $response['count'] = VehicleGallery::get()->count();
-
+        $response['count'] = VehicleGallery::where("fk_idvehicle", $id)->count();
         $response['slideFirst'] = VehicleGallery::orderBy('id', 'desc')->first();
         if ($response['slideFirst']) {
             $response['slideshows'] = VehicleGallery::where('id', '!=', $response['slideFirst']->id)->orderBy('id', 'desc')->get();
         }
-
-        $response['slideshows'] = VehicleGallery::OrderBy('id', 'desc')->get();
         $response['comment'] = vehicleComment::where('fk_vehicleId', $id)->OrderBy("id", "desc")->get();
         $response['count_comments'] = vehicleComment::where('fk_vehicleId', $id)->count();
         return view('user.vehicleGallery.detail.index', $response);

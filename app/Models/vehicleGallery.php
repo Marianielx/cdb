@@ -11,4 +11,9 @@ class vehicleGallery extends Model
     protected $table = 'vehicle_galleries';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
+
+    public function vehicle_data()
+    {
+        return $this->belongsTo(vehicle::class, 'fk_idvehicle');
+    }
 }

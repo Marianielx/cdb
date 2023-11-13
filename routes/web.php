@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 /* HOME */
 
 route::get('/', ['as' => 'site.home', 'uses' => 'Site\HomeController@index']);
+route::get('/people', ['as' => 'site.home.person', 'uses' => 'Site\HomeController@person']);
+route::get('/vehicle', ['as' => 'site.home.vehicle', 'uses' => 'Site\HomeController@vehicle']);
 
 /* Terms */
 route::get('/terms', ['as' => 'site.terms', 'uses' => 'Site\TermsController@index']);
@@ -12,6 +14,7 @@ route::get('/terms', ['as' => 'site.terms', 'uses' => 'Site\TermsController@inde
 /** BEGIN PERSON FREE ROUTE **/
 route::get('/missing-person/show/{id}', ['as' => 'user.person.show', 'uses' => 'Site\PersonController@show']);
 route::get('/missing-vehicle/show/{id}', ['as' => 'user.vehicle.show', 'uses' => 'Site\VehicleController@show']);
+route::get('/missing-gallery/show/{id}', ['as' => 'user.gallery.details', 'uses' => 'Site\HomeController@show']);
 Route::post('visitor-store', ['as' => 'visitor.user.store', 'uses' => 'Visitor\UserController@store']);
 route::get('/missing-people/search', ['as' => 'site.home.search', 'uses' => 'Site\HomeController@search']);
 /** END PERSON ROUTE **/
