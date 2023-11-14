@@ -27,14 +27,8 @@ class HomeController extends Controller
 
     public function show($id)
     {
-        $response['data'] = vehicleGallery::find($id);
-
-        $response['count'] = vehicleGallery::where("fk_idvehicle", $id)->count();
-
-        $response['slideFirst'] = vehicleGallery::where("id", $id)->orderBy('id', 'desc')->first();
-        if ($response['slideFirst']) {
-            $response['slideshows'] = vehicleGallery::where('id', '!=', $response['slideFirst']->id)->orderBy('id', 'desc')->get();
-        }
+        $response['data'] = vehicle::find($id);
+        $response['count'] = vehicleGallery::where("fk_idvehicle", $id)->get()->count();
         return view('site.home.vehicleGallery.index', $response);
     }
 

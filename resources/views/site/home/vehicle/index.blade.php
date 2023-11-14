@@ -126,55 +126,6 @@
 </div>
 <!-- End Show Modal -->
 
-<!-- Image Modal -->
-<div class="modal" id="ImageModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-file-image"></i> Imagem</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <section id="hero" class="hero" style="background-color: #fff; background-position: center;  background-size: cover; background-repeat: no-repeat;">
-                    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @if ($slideFirst)
-                            <div class="carousel-item active">
-                                <div class="slider-image center" style='background-position:center; background-size:initial; height:800px; width:100%;no-repeat;
-                        background-size:cover;
-                        background-image: url("/storage/{{ $slideFirst->path }}");
-                            '>
-                                </div>
-                            </div>
-                            @endif
-                            @isset($slideshows)
-                            @foreach ($slideshows as $item)
-                            <div class="carousel-item">
-                                <div class="slider-image center" style='background-position:center; background-size:initial; height:800px; width:100%;no-repeat;
-                        background-size:cover;
-                        background-image: url("/storage/{{ $item->path }}");
-                            '>
-                                </div>
-                            </div>
-                            @endforeach
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                            @endisset
-                        </div>
-                </section>
-                <!-- </div> -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Image Modal -->
-
 <!-- Description Modal -->
 <div class="modal fade" id="descriptionModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -240,7 +191,8 @@
                 type: "GET",
                 url: "/missing-vehicle/show/" + vehicle_id,
                 success: function(response) {
-                    $('#vehicle_id').val(response.vehicle.vehicle_id);
+                    $('#ownernamed').val(response.vehicle.vehicle_ownername);
+                    $('#message').val(response.vehicle.vehicle_message);
                 }
             });
         });
