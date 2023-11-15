@@ -23,5 +23,6 @@
 
 <!-- Template Main CSS File -->
 <link href="/site/css/main.css" rel="stylesheet">
+<link href="/site/css/style.css" rel="stylesheet">
 {{--  
 {!! RecaptchaV3::initJs() !!}  --}}

@@ -8,38 +8,41 @@
     <section id="portfolio" class="portfolio sections-bg">
         <div class="container" data-aos="fade-up">
 
+            <div class="section-header">
+                <h2>Procura De Meios Rolantes</h2>
+                <p>A Procura de meios rolantes é uma preocupação de muitas pessoas:</p>
+            </div>
+
             <!-- Search -->
-            <form action="{{ route('user.vehicle.search') }}" method="GET">
-                @csrf
-                <div class="row">
-                    <div class="col-md-8 mb-3">
-                        <input class="form-control form-control-sm" name="search" type="search" placeholder="Procurar locomotiva..." required />
+            <div class="search">
+                <form action="{{ route('user.vehicle.search') }}" method="GET">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <input name="search" type="search" placeholder="O que procuras?" required />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <button type="submit" class="btn btn-outline-primary btn-sm btnsearch">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
             <!-- /Search -->
 
-            <div class="section-header">
-                <h2>Locomotivas</h2>
-                <p>A Procura de locomotivas desaparecidos é um critério de preocupação:</p>
-            </div>
             <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4 portfolio-container">
                     @foreach ($data as $item)
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
                         <div class="portfolio-wrap">
-                            <div style="height: 350px">
-                                <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid" alt="" style="height:100%; width:100%;"></a>
+                            <div class="vehicle-card">
+                                <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid"></a>
                             </div>
                             <div class="portfolio-info">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <p>Destaque:</p>
+                                        <p>Destaques:</p>
                                     </div>
                                     <div class="col-md-8">
                                         <p class="text-danger" style="text-align: right;">{{ $item->vehicle_focus }}</p>
