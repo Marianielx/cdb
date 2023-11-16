@@ -1,6 +1,6 @@
 @extends('layouts.merge.site')
 
-@section('title', 'Portal Central Da Banda - Locomotiva')
+@section('title', 'Portal Central Da Banda')
 
 @section('content')
 
@@ -8,35 +8,38 @@
     <section id="portfolio" class="portfolio sections-bg">
         <div class="container" data-aos="fade-up">
 
+            @if(!$data->isEmpty())
             <div class="section-header">
                 <h2>Procura De Meios Rolantes</h2>
                 <p>A Procura de meios rolantes é uma preocupação de muitas pessoas:</p>
             </div>
+            @endif
 
             <!-- Search -->
-            <div class="search">
-                <form action="{{ route('user.vehicle.search') }}" method="GET">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-8 mb-3">
-                            <input name="search" type="search" placeholder="O que procuras?" required />
+            <div class="mx-auto pull-right">
+                <div class="">
+                    <form action="{{ route('site.home.searchVehicle') }}" method="GET">
+                        @csrf
+                        <div class="input-group">
+                            <input name="search" class="form-control form-control-sm" type="search" placeholder="Quem procuras?" required />
+                            <span class="input-group-btn mr-5 mt-1">
+                                <button class="btn btn-info" type="submit" title="Pesquisar Pessoa">
+                                    <span class="bi bi-search"></span>
+                                </button>
+                            </span>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <button type="submit" class="btn btn-outline-primary btn-sm btnsearch">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
             <!-- /Search -->
 
             <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4 portfolio-container">
+                    @if(!$data->isEmpty())
                     @foreach ($data as $item)
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
                         <div class="portfolio-wrap">
-                            <div class="vehicle-card">
+                            <div class="image-card">
                                 <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid"></a>
                             </div>
                             <div class="portfolio-info">
@@ -69,6 +72,15 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div class="container">
+                        <div class="row">
+                            <div class="alert alert-warning mb-3">
+                                Nenhuma Informação foi encontrada.
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

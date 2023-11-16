@@ -24,19 +24,21 @@
             </div>
 
             <!-- Search -->
-            <form action="{{ route('user.vehicle.search') }}" method="GET">
-                @csrf
-                <div class="row">
-                    <div class="col-md-8 mb-3">
-                        <input name="search" type="search" placeholder="O que procuras?" required />
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm btnsearch">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
+            <div class="mx-auto pull-right">
+                <div class="">
+                    <form action="{{ route('user.vehicle.search') }}" method="GET">
+                        @csrf
+                        <div class="input-group">
+                            <input name="search" class="form-control form-control-sm" type="search" placeholder="Quem procuras?" required />
+                            <span class="input-group-btn mr-5 mt-1">
+                                <button class="btn btn-info" type="submit" title="Pesquisar Pessoa">
+                                    <span class="bi bi-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
             <!-- /Search -->
 
             <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">

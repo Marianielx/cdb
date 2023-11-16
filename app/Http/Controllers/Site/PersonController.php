@@ -118,7 +118,11 @@ class PersonController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $response['data'] = Person::where('fk_userId', Auth::user()->id)->Orwhere('state', 'Procura-se')->Orwhere('fullname', 'Like', '%' . $search . '%')->Orwhere('nickname', $search)->paginate(3);
+        $response['data'] = Person::where('fk_userId', Auth::user()->id)
+            ->where('fullname', 'Like', '%' . $search . '%')
+            ->where('nickname', $search)
+            ->where('state', 'Procura-se')
+            ->paginate(3);
         return view('site.person.index', $response);
     }
 

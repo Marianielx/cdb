@@ -7,35 +7,40 @@
 <main id="main">
     <section id="portfolio" class="portfolio sections-bg">
         <div class="container" data-aos="fade-up">
+
             <!-- Search -->
-            <form action="{{ route('site.home.search') }}" method="GET">
-                @csrf
-                <div class="row">
-                    <div class="col-md-8">
-                        <input class="form-control form-control-sm" name="search" type="search" placeholder="Procurar Pessoa..." required />
-                    </div>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
+            <div class="mx-auto pull-right">
+                <div class="">
+                    <form action="{{ route('site.home.search') }}" method="GET">
+                        @csrf
+                        <div class="input-group">
+                            <input name="search" class="form-control form-control-sm" type="search" placeholder="Quem procuras?" required />
+                            <span class="input-group-btn mr-5 mt-1">
+                                <button class="btn btn-info" type="submit" title="Pesquisar Pessoa">
+                                    <span class="bi bi-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
             <!-- /Search -->
 
+            @if(!$data->isEmpty())
             <div class="section-header">
                 <h2>Pessoas</h2>
                 <p>A Procura de pessoas desaparecidas é um critério de preocupação:</p>
             </div>
-            
+            @endif
+
             <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4 portfolio-container">
                     @if(!$data->isEmpty())
                     @foreach ($data as $item)
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
                         <div class="portfolio-wrap">
-                            <div style="height: 350px">
-                                <a href="{{ url("/storage/$item->image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->image") }}" class="img-fluid" alt="" style="height:100%; width:100%;"></a>
+                            <div class="image-card">
+                                <a href="{{ url("/storage/$item->image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->image") }}" class="img-fluid"></a>
                             </div>
                             <div class="portfolio-info">
                                 <h4>{{ $item->fullname }}</h4>

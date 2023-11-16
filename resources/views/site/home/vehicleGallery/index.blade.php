@@ -9,7 +9,7 @@
     <div class="row">
         <div class="form-group col-md-6">
             <a href="{{ url("/storage/$data->vehicle_image") }}" class="glightbox">
-                <img src="{{ url("/storage/$data->vehicle_image") }}" alt="{{ $data->vehicle_image }}" class="img-fluid" alt="" style="height:100%; width:100%;" />
+                <img src="{{ url("/storage/$data->vehicle_image") }}" alt="{{ $data->vehicle_image }}" class="img-fluid" />
             </a>
         </div>
 
@@ -55,6 +55,7 @@
         </div>
         <hr>
         <div class="row">
+            @if(!$data->isEmpty())
             @foreach ($data->images as $item)
             <div class="col-md-4">
                 <div class="card-deck mb-4">
@@ -67,6 +68,15 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <div class="container">
+                <div class="row">
+                    <div class="alert alert-warning mb-3">
+                        Nenhuma Informação foi encontrada.
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

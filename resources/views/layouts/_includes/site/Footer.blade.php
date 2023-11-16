@@ -129,6 +129,15 @@ background-repeat: no-repeat; ">
         showConfirmButton: true
     })
 </script>
+@elseif (session('search'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: '',
+        text: 'Pesquisa Inválida',
+        showConfirmButton: true
+    })
+</script>
 @endif
 
 @yield('JS')

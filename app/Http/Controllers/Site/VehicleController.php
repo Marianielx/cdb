@@ -121,7 +121,7 @@ class VehicleController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->Orwhere('vehicle_state', 'Procura-se')->Orwhere('fullname', 'Like', '%' . $search . '%')->Orwhere('nickname', $search)->paginate(3);
+        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->Orwhere('vehicle_state', 'Procura-se')->Orwhere('vehicle_card_number', 'Like', '%' . $search . '%')->Orwhere('vehicle_chasis_number', $search)->Orwhere('vehicle_engine_number', $search)->Orwhere('vehicle_board_number', $search)->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
