@@ -15,13 +15,13 @@ class HomeController extends Controller
 
     public function person()
     {
-        $response['data'] = Person::where('state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = Person::where("state", 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
         return view('site.home.person.index', $response);
     }
 
     public function vehicle()
     {
-        $response['data'] = vehicle::where('vehicle_state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = vehicle::where("vehicle_state", 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
         return view('site.home.vehicle.index', $response);
     }
 
@@ -35,7 +35,7 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $response['data'] = Person::where('state', 'Procura-se')->where('fullname', 'Like', '%' . $search . '%')->where('nickname', $search)->paginate(3);
+        $response['data'] = Person::where("state", 'Procura-se')->where('fullname', 'Like', '%' . $search . '%')->where('nickname', $search)->paginate(3);
         return view('site.home.person.index', $response);
     }
 

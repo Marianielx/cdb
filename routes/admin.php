@@ -39,9 +39,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/person/show/{id}', ['as' => 'admin.person.show', 'uses' => 'Admin\PersonController@show'])->withoutMiddleware(['Administrator']);
     /* END */
 
-    /* Person */
+    /* Person Comment */
     Route::get('admin/personComment/index', ['as' => 'admin.personComment.index', 'uses' => 'Admin\PersonCommentController@index'])->withoutMiddleware(['Administrator']);
     Route::get('admin/personComment/show/{id}', ['as' => 'admin.personComment.show', 'uses' => 'Admin\PersonCommentController@show'])->withoutMiddleware(['Administrator']);
     /* END */
+
+     /* Vehicle */
+     Route::get('admin/vehicle/index', ['as' => 'admin.vehicle.index', 'uses' => 'Admin\VehicleController@index'])->withoutMiddleware(['Administrator']);
+     Route::get('admin/vehicle/show/{id}', ['as' => 'admin.vehicle.show', 'uses' => 'Admin\VehicleController@show'])->withoutMiddleware(['Administrator']);
+     /* END */
+
+      /* Vehicle */
+      Route::get('admin/gallery/show/{id}', ['as' => 'admin.gallery.show', 'uses' => 'Admin\VehicleGalleryController@index'])->withoutMiddleware(['Administrator']);
+      /* END */
   });
 });

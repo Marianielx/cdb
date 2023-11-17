@@ -53,18 +53,34 @@
             </ul>
         </li>
 
-        {{--  People  --}}
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Pessoas</span>
         </li>
         <li class="menu-item py-1">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-slideshow"></i>
+                <i class="menu-icon tf-icons bx bx-user"></i>
                 <div data-i18n="Authentications">Desaparecidas</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="{{ route('admin.person.index') }}" class="menu-link">
+                        <div data-i18n="Basic">Listar</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Locomotivas</span>
+        </li>
+        <li class="menu-item py-1">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-car"></i>
+                <i class="menu-icon tf-icons bx bx-cycling"></i>
+                <div data-i18n="Authentications">Desaparecidas</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.vehicle.index') }}" class="menu-link">
                         <div data-i18n="Basic">Listar</div>
                     </a>
                 </li>

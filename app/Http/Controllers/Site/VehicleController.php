@@ -20,13 +20,13 @@ class VehicleController extends Controller
 
     public function index()
     {
-        $response['data'] = vehicle::where('vehicle_state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = vehicle::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
     public function list()
     {
-        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = vehicle::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
@@ -130,7 +130,7 @@ class VehicleController extends Controller
         vehicle::find($id)->update(
             ['vehicle_state' => 'Encontrado',]
         );
-        return redirect()->route('site.person.index')->with('edit', '1');
+        return redirect()->route('site.vehicle.index')->with('edit', '1');
         $this->Logger->log('info', 'Vehicle Inactivated the state - User Nº:' . Auth::user()->id);
     }
 

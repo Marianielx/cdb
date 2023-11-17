@@ -15,15 +15,10 @@
         <div class="form-group col-md-6">
             <h2>{{ $data->fullname }}</h2>
             <hr>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <h6><b>Apelido:</b> {{ $data->nickname }}</h6>
-                </div>
-                <div class="form-group col-md-6">
-                    <h6><b>Bairro:</b> {{ $data->neighborhood }}</h6>
-                </div>
-                <hr>
-            </div>
+            <h6><b>Apelido:</b> {{ $data->nickname }}</h6>
+            <hr>
+            <h6><b>Bairro:</b> {{ $data->neighborhood }}</h6>
+            <hr>
             <div class="row">
                 <div class="form-group col-md-6">
                     <p><b>Números do Telefone:</b></p>
@@ -62,10 +57,19 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>Informação da Esquadra Policial:</b></p>
+                    <p><b>Nome da Esquadra:</b></p>
                 </div>
                 <div class="form-group col-md-6">
-                    <p>{{ $data->watchStation }} / {{ $data->watchPhone }}</p>
+                    <p>{{ $data->watchStation }}</p>
+                </div>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <p><b>Número do Telefone da Esquadra:</b></p>
+                </div>
+                <div class="form-group col-md-6">
+                    <p>{{ $data->watchPhone }}</p>
                 </div>
             </div>
         </div>
@@ -79,7 +83,9 @@
         @foreach($comment as $comments)
         <p style="color: gray;"><b>{{ $comments->users_name->getFullName() }}</b></p>
         <p>{{ $comments->body }}</p>
-        <a href=""><span><p>{{ $comments->created_at->diffForHumans() }}</p></span></a>
+        <a href=""><span>
+                <p>{{ $comments->created_at->diffForHumans() }}</p>
+            </span></a>
         @endforeach
     </div>
 </div>

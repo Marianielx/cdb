@@ -1,5 +1,5 @@
 @extends('layouts.merge.site')
-@section('title', 'Politícas de Privacidade & Termos de Uso')
+@section('title', 'Portal Central Da Banda')
 @section('content')
 
 

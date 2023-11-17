@@ -20,13 +20,13 @@ class PersonController extends Controller
 
     public function index()
     {
-        $response['data'] = Person::where('state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = Person::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.person.index', $response);
     }
 
     public function list()
     {
-        $response['data'] = Person::where('fk_userId', Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = Person::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.person.index', $response);
     }
 
@@ -42,8 +42,8 @@ class PersonController extends Controller
     public function details($id)
     {
         $response['data'] = Person::find($id);
-        $response['comment'] = personComment::where('fk_personId', $id)->OrderBy("id", "desc")->get();
-        $response['count_comments'] = personComment::where('fk_personId', $id)->count();
+        $response['comment'] = personComment::where("fk_personId", $id)->OrderBy("id", "desc")->get();
+        $response['count_comments'] = personComment::where("fk_personId", $id)->count();
         return view('user.person.detail.index', $response);
     }
 
@@ -118,10 +118,10 @@ class PersonController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $response['data'] = Person::where('fk_userId', Auth::user()->id)
-            ->where('fullname', 'Like', '%' . $search . '%')
-            ->where('nickname', $search)
-            ->where('state', 'Procura-se')
+        $response['data'] = Person::where("fullname", 'Like', '%' . $search . '%')
+            ->Orwhere("nickname", 'Like', '%' . $search . '%')
+            ->where("fk_userId", Auth::user()->id)
+            ->where("state", 'Procura-se')
             ->paginate(3);
         return view('site.person.index', $response);
     }

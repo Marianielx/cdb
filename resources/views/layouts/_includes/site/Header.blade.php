@@ -16,7 +16,6 @@
 <link href="/site/vendor/aos/aos.css" rel="stylesheet">
 <link href="/site/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 <link href="/site/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-<link href="/site/css/main.css" rel="stylesheet">
 <link href="/site/css/style.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/sweetalert2.css">
 

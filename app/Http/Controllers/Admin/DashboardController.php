@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\Logger;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{Log, Person, personComment, User};
+use App\Models\{Log, Person, personComment, User, vehicle, vehicleComment};
 
 class DashboardController extends Controller
 {
@@ -20,8 +20,14 @@ class DashboardController extends Controller
     {
         $response['count_users'] = User::count();
         $response['count_people'] = Person::count();
-        $response['count_comments'] = personComment::count();
-        
+        $response['count_person_comments'] = personComment::count();
+        $response['count_people_seek'] = Person::where("state", 'Procura-se')->count();
+        $response['count_people_found'] = Person::where("state", 'Encontrado')->count();
+        $response['count_vehicle'] = vehicle::count();
+        $response['count_vehicle_comments'] = vehicleComment::count();
+        $response['count_vehicle_seek'] = vehicle::where("vehicle_state", 'Procura-se')->count();
+        $response['count_vehicle_found'] = vehicle::where("vehicle_state", 'Encontrado')->count();
+
         $jan = Log::where('USER_ID', Auth::user()->id)
             ->whereMonth('created_at', '=', 01)
             ->count();
@@ -59,7 +65,6 @@ class DashboardController extends Controller
             ->whereMonth('created_at', '=', '08')
             ->count();
         $response['ago'] = json_encode($ago);
-        /**d */
         $set = Log::where('USER_ID', Auth::user()->id)
             ->whereMonth('created_at', '=', '09')
             ->count();
@@ -79,7 +84,7 @@ class DashboardController extends Controller
             ->count();
         $response['dez'] = json_encode($dez);
 
-        $this->Logger->log('info', 'Entrou no Painel da CDB');
+        $this->Logger->log('info', 'You Got into Portal Central Da Banda');
 
         return view('admin.home.index', $response);
     }

@@ -38,19 +38,19 @@
                     @if(!$data->isEmpty())
                     @foreach ($data as $item)
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+                        <div class="card-header">
+                            @if($item->vehicle_state == 'Encontrado')
+                            <h5 class="mb-1 text-primary">{{ $item->vehicle_state }}</h5>
+                            @endif
+                            @if($item->vehicle_state == 'Procura-se')
+                            <h5 class="mb-1 text-danger">{{ $item->vehicle_state }}</h5>
+                            @endif
+                        </div>
                         <div class="portfolio-wrap">
                             <div class="image-card">
                                 <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid"></a>
                             </div>
                             <div class="portfolio-info">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Destaques:</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p class="text-danger" style="text-align: right;">{{ $item->vehicle_focus }}</p>
-                                    </div>
-                                </div>
                                 <hr>
                                 <h4>{{ $item->vehicle_brand }}</h4>
                                 <hr>
@@ -61,13 +61,24 @@
                                     <div class="col-md-1">
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-1 text-danger">{{ $item->vehicle_state }}</p>
+                                        <p class="mb-1 text-danger">{{ $item->vehicle_card_number }}</p>
                                     </div>
                                 </div>
                                 <hr>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm" data-toggle="tooltip" title='Visualizar Informações'><i class="bi bi-eye"></i></button>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></button>
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title='Visualizar Imagem'><a href="{{ route('user.gallery.details', $item->id) }}"><i class="bi bi-file-image"></a></i></></button>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm" data-toggle="tooltip" title='Visualizar Informações'><i class="bi bi-eye"></i></button>
+                                            <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></button>
+                                            <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title='Visualizar Imagem'><a href="{{ route('user.gallery.details', $item->id) }}"><i class="bi bi-file-image"></a></i></></button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="vehiclefocus">
+                                                <p class="text-dark">{{ $item->vehicle_focus }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

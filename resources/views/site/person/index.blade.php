@@ -1,6 +1,6 @@
 @extends('layouts.merge.site')
 
-@section('title', 'Pessoas Desaparecidas')
+@section('title', 'Portal Central Da Banda')
 
 @section('content')
 
@@ -48,6 +48,14 @@
                     @if(!$data->isEmpty())
                     @foreach ($data as $item)
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+                        <div class="card-header">
+                            @if($item->state == 'Encontrado')
+                            <h5 class="mb-1 text-primary">{{ $item->state }}</h5>
+                            @endif
+                            @if($item->state == 'Procura-se')
+                            <h5 class="mb-1 text-danger">{{ $item->state }}</h5>
+                            @endif
+                        </div>
                         <div class="portfolio-wrap">
                             <div class="image-card">
                                 <a href="{{ url("/storage/$item->image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->image") }}" class="img-fluid"></a>
@@ -60,12 +68,6 @@
                                         <p class="mb-1 text-dark">{{ date('d-m-Y', strtotime($item->missingdate)) }} </p>
                                     </div>
                                     <div class="col-md-5">
-                                        @if($item->state == 'Encontrado')
-                                        <p class="mb-1 text-primary">{{ $item->state }}</p>
-                                        @endif
-                                        @if($item->state == 'Procura-se')
-                                        <p class="mb-1 text-danger">{{ $item->state }}</p>
-                                        @endif
                                     </div>
                                     <div class="col-md-2">
                                         @if($item->state == 'Encontrado')
