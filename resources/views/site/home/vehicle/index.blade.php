@@ -1,6 +1,6 @@
 @extends('layouts.merge.site')
 
-@section('title', 'Portal Central Da Banda - Locomotiva')
+@section('title', 'Portal Central Da Banda')
 
 @section('content')
 
@@ -8,43 +8,49 @@
     <section id="portfolio" class="portfolio sections-bg">
         <div class="container" data-aos="fade-up">
 
+            @if(!$data->isEmpty())
+            <div class="section-header">
+                <h2>Procura De Meios Rolantes</h2>
+                <p>A Procura de meios rolantes é uma preocupação de muitas pessoas:</p>
+            </div>
+            @endif
+
             <!-- Search -->
-            <form action="{{ route('user.vehicle.search') }}" method="GET">
-                @csrf
-                <div class="row">
-                    <div class="col-md-8 mb-3">
-                        <input class="form-control form-control-sm" name="search" type="search" placeholder="Procurar locomotiva..." required />
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
+            <div class="mx-auto pull-right">
+                <div class="">
+                    <form action="{{ route('site.home.searchVehicle') }}" method="GET">
+                        @csrf
+                        <div class="input-group">
+                            <input name="search" class="form-control form-control-sm" type="search" placeholder="Quem procuras?" required />
+                            <span class="input-group-btn mr-5 mt-1">
+                                <button class="btn btn-info" type="submit" title="Pesquisar Pessoa">
+                                    <span class="bi bi-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
             <!-- /Search -->
 
-            <div class="section-header">
-                <h2>Locomotivas</h2>
-                <p>A Procura de locomotivas desaparecidos é um critério de preocupação:</p>
-            </div>
             <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4 portfolio-container">
+                    @if(!$data->isEmpty())
                     @foreach ($data as $item)
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+                        <div class="card-header">
+                            @if($item->vehicle_state == 'Encontrado')
+                            <h5 class="mb-1 text-primary">{{ $item->vehicle_state }}</h5>
+                            @endif
+                            @if($item->vehicle_state == 'Procura-se')
+                            <h5 class="mb-1 text-danger">{{ $item->vehicle_state }}</h5>
+                            @endif
+                        </div>
                         <div class="portfolio-wrap">
-                            <div style="height: 350px">
-                                <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid" alt="" style="height:100%; width:100%;"></a>
+                            <div class="image-card">
+                                <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid"></a>
                             </div>
                             <div class="portfolio-info">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Destaque:</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p class="text-danger" style="text-align: right;">{{ $item->vehicle_focus }}</p>
-                                    </div>
-                                </div>
                                 <hr>
                                 <h4>{{ $item->vehicle_brand }}</h4>
                                 <hr>
@@ -55,17 +61,37 @@
                                     <div class="col-md-1">
                                     </div>
                                     <div class="col-md-5">
-                                        <p class="mb-1 text-danger">{{ $item->vehicle_state }}</p>
+                                        <p class="mb-1 text-danger">{{ $item->vehicle_card_number }}</p>
                                     </div>
                                 </div>
                                 <hr>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm" data-toggle="tooltip" title='Visualizar Informações'><i class="bi bi-eye"></i></button>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></button>
-                                <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title='Visualizar Imagem'><a href="{{ route('user.gallery.details', $item->id) }}"><i class="bi bi-file-image"></a></i></></button>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm" data-toggle="tooltip" title='Visualizar Informações'><i class="bi bi-eye"></i></button>
+                                            <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></button>
+                                            <button type="button" class="btn btn-success btn-sm" data-toggle="tooltip" title='Visualizar Imagem'><a href="{{ route('user.gallery.details', $item->id) }}"><i class="bi bi-file-image"></a></i></></button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="vehiclefocus">
+                                                <p class="text-dark">{{ $item->vehicle_focus }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div class="container">
+                        <div class="row">
+                            <div class="alert alert-warning mb-3">
+                                Nenhuma Informação foi encontrada.
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -125,55 +151,6 @@
     </div>
 </div>
 <!-- End Show Modal -->
-
-<!-- Image Modal -->
-<div class="modal" id="ImageModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-file-image"></i> Imagem</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <section id="hero" class="hero" style="background-color: #fff; background-position: center;  background-size: cover; background-repeat: no-repeat;">
-                    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            @if ($slideFirst)
-                            <div class="carousel-item active">
-                                <div class="slider-image center" style='background-position:center; background-size:initial; height:800px; width:100%;no-repeat;
-                        background-size:cover;
-                        background-image: url("/storage/{{ $slideFirst->path }}");
-                            '>
-                                </div>
-                            </div>
-                            @endif
-                            @isset($slideshows)
-                            @foreach ($slideshows as $item)
-                            <div class="carousel-item">
-                                <div class="slider-image center" style='background-position:center; background-size:initial; height:800px; width:100%;no-repeat;
-                        background-size:cover;
-                        background-image: url("/storage/{{ $item->path }}");
-                            '>
-                                </div>
-                            </div>
-                            @endforeach
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                            @endisset
-                        </div>
-                </section>
-                <!-- </div> -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Image Modal -->
 
 <!-- Description Modal -->
 <div class="modal fade" id="descriptionModal" tabindex="-1" aria-hidden="true">
@@ -240,7 +217,8 @@
                 type: "GET",
                 url: "/missing-vehicle/show/" + vehicle_id,
                 success: function(response) {
-                    $('#vehicle_id').val(response.vehicle.vehicle_id);
+                    $('#ownernamed').val(response.vehicle.vehicle_ownername);
+                    $('#message').val(response.vehicle.vehicle_message);
                 }
             });
         });

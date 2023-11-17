@@ -2,13 +2,13 @@
     <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
             <i class="bi bi-envelope d-flex align-items-center text-dark">
-                <a href="mailto:geral@infosi.gov.ao" class="text-dark">geral@gmail.com</a></i>
+                <a href="mailto:geral@infosi.gov.ao" class="text-dark">mariano.vunge97@gmail.com</a></i>
             <i class="bi bi-phone d-flex align-items-center ms-4 text-dark"><span class="text-dark">(+244) 938 552
                     241</span></i>
         </div>
         <div class="social-links d-none d-md-flex align-items-center">
-            <a href="#" class="facebook text-dark"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="linkedin text-dark"><i class="bi bi-linkedin"></i></i></a>
+            <a href="https://www.facebook.com/HCKMariano" class="facebook text-dark"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/mariano-vunge-24033a23b/" class="linkedin text-dark"><i class="bi bi-linkedin"></i></i></a>
         </div>
     </div>
 </section>
@@ -17,15 +17,15 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
         <a href="{{ route('site.home') }}" class="logo d-flex align-items-center">
             <!-- <img src="/site/img/mono-logo.svg" alt="logo" class="" height="28"> -->
-            <h3 class="text-white">CENTRAL DA BANDA</h3>
+            <h3 class="text-white">PORTAL CENTRAL DA BANDA</h3>
         </a>
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a href="{{ route('site.home') }}">Home</a></li>
                 @guest
                 @if (Route::has('login'))
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.home.person') }}">Pessoas</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.home.vehicle') }}">Locomotivas</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.home.person') }}">Pessoa</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.home.vehicle') }}">Locomotiva</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('login') }}">{{ __('Entrar') }}</a></li>
                 @endif
                 @if (Route::has('register'))
@@ -33,7 +33,7 @@
                 @endif
                 @else
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.person.index') }}">Pessoa</a></li>
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.vehicle.index') }}">Locomotivas</a></li>
+                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{{ route('site.vehicle.index') }}">Locomotiva</a></li>
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->first_name[0] }}

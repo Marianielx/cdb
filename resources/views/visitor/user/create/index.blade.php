@@ -1,6 +1,6 @@
 @extends('layouts.merge.site')
 
-@section('title', 'Criar Nova Conta')
+@section('title', 'Portal Central Da Banda - Entre ou Cadastre-se')
 
 @section('content')
     <div class="layout-wrapper layout-content-navbar">

@@ -1,6 +1,4 @@
-<footer id="footer" class="footer" style="background-image: url('{{ asset('site/img/circulo.png') }}'); background-position: center; 
-background-size: cover;
-background-repeat: no-repeat; ">
+<footer id="footer" class="footer">
 
     <div class="container">
         <div class="row gy-4">
@@ -10,45 +8,30 @@ background-repeat: no-repeat; ">
                 </a> -->
                 <p>Portal Central da Banda</p>
                 <div class="social-links d-flex mt-4">
-                    <a target="_blank" href="https://www.facebook.com/infosi.nacional" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a target="_blank" href="https://www.linkedin.com/company/infosinacional/" class="linkedin "><i class="bi bi-linkedin"></i></a>
+                    <a target="_blank" href="https://www.facebook.com/HCKMariano" class="facebook"><i class="bi bi-facebook"></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/in/mariano-vunge-24033a23b/" class="linkedin "><i class="bi bi-linkedin"></i></a>
                 </div>
 
 
             </div>
             <div class="col-lg-3 col-md-4">
 
-                <h4>CDB</h4>
-                <a href="#" class="text-white-50 ank">Definição</a><br>
-                <a href="#" class="text-white-50 ank">Estrutura Orgânica</a><br>
-                <a href="#" class="text-white-50 ank">Regulamentos</a><br>
-                <a href="#" class="text-white-50 ank">Serviços</a><br>
-                <a href="#" class="text-white-50 ank">contactos</a><br>
+                <h4>EXTRA</h4>
             </div>
 
             <div class="col-lg-3 col-md-4 col-6 footer-links">
                 <h4>Informações</h4>
-                <a href="#" class="text-white-50 ank">Notícias</a><br>
-                <a href="#" class="text-white-50 ank">Galeria de Imagens</a><br>
-                <a href="#" class="text-white-50 ank">Galeria de Vídeos</a><br>
             </div>
 
             <div class="col-lg-3 col-md-4 footer-contact text-center text-md-start">
                 <h4>Links Úteis</h4>
-
-                <a href="https://governo.gov.ao/" target="_blank" class="text-white-50 ank">Portal do Governo de
-                    Angola</a><br>
-                <a href="https://minttics.gov.ao/ao/" target="_blank" class="text-white-50 ank">Ministério das
-                    Telecomunicações, Tecnologia de Informação e Comunicação Social</a><br>
-                <a href="https://digital.ao/ao/" target="_blank" class="text-white-50 ank">Digital.AO</a><br>
-                <a href="https://igae.gov.ao/" target="_blank" class="text-white-50 ank">DNS.AO</a><br>
             </div>
         </div>
     </div>
 
     <div class="container mt-4">
         <div class="copyright">
-            <strong>CDB</strong> - 2023 &copy; Todos Direitos Reservados <br>
+            <strong>Portal Central Da Banda</strong> - {{ date('Y') }} &copy; Todos Direitos Reservados <br>
             <a href="{{ route('site.terms') }}" target="_blank" class="text-white-50 ank">Politícas de Privacidade &
                 Termos de Uso</a>
         </div>
@@ -126,6 +109,15 @@ background-repeat: no-repeat; ">
         icon: 'error',
         title: 'Atenção',
         text: 'Tente novamente ou contacte a área de suporte',
+        showConfirmButton: true
+    })
+</script>
+@elseif (session('search'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: '',
+        text: 'Pesquisa Inválida',
         showConfirmButton: true
     })
 </script>

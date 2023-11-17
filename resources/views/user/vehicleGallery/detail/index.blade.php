@@ -54,12 +54,27 @@
             <hr>
             <div class="row align-items-center my-4">
                 <div class="col">
-                    <h2 class="page-title">Imagem: <a value="{{ $data->id }}" class="Showbtn" style="cursor: pointer;">{{ $count }}</a></h2>
+                    <h2 class="page-title">Imagem: {{ $count }}</h2>
                 </div>
                 <div class="col-auto">
                     <button type="button" value="{{ $data->id }}" class="btn btn-lg btn-primary text-white Gallerybtn" data-toggle="tooltip" title='Anexar Imagem'> <span class="fe fe-plus fe-16 mr-3"></span><i class='bi bi-plus-circle'></i></button>
                 </div>
             </div>
+        </div>
+        <hr>
+        <div class="row">
+            @foreach ($data->images as $item)
+            <div class="col-md-4">
+                <div class="card-deck mb-4">
+                    <div class="card border-0 bg-transparent">
+                        <a href="{{ url("/storage/$item->path") }}" class="glightbox">
+                            <div class="card-img-top img-fluid rounded" style='background-image:url("/storage/{{ $item->path }}");background-position:center;background-size:cover;height:350px;width:auto;'>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
         <div class="form-group">
             <h4></h4>
@@ -97,49 +112,6 @@
     </div>
 </div>
 <!-- End Gallery Modal -->
-
-<!-- View Gallery Modal -->
-<div class="modal fade" id="ShowModal" is="dmx-bs5-modal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body bggx_sage25">
-                <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        @if ($slideFirst)
-                        <div class="carousel-item active">
-                            <div class="slider-image center" style='background-position:center; background-size:initial; height:450px; width:100%;no-repeat;
-                        background-size:cover;
-                        background-image: url("/storage/{{ $slideFirst->path }}");
-                            '>
-                            </div>
-                        </div>
-                        @endif
-                        @isset($slideshows)
-                        @foreach ($slideshows as $item)
-                        <div class="carousel-item">
-                            <div class="slider-image center" style='background-position:center; background-size:initial; height:450px; width:100%;no-repeat;
-                        background-size:cover;
-                        background-image: url("/storage/{{ $item->path }}");
-                            '>
-                            </div>
-                        </div>
-                        @endforeach
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Anterior</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Próximo</span>
-                        </button>
-                        @endisset
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End View Gallery Modal -->
 
 @endsection
 

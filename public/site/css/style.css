@@ -1718,6 +1718,7 @@ section {
 .contact {
   background: #eeeeee;
 }
+
 .contact .info-container {
   background-color: var(--color-primary);
   height: 100%;
@@ -1782,7 +1783,7 @@ section {
 }
 
 .contact .internship {
-    border-radius: 10px !important;
+  border-radius: 10px !important;
 }
 
 .contact .php-email-form .form-group {
@@ -1864,7 +1865,7 @@ section {
 
 .contact .php-email-form button[type=submit]:hover {
   background: rgba(0, 68, 131, 0.8);
-  
+
 }
 
 
@@ -1893,7 +1894,7 @@ section {
 .hero {
   width: 100%;
   position: relative;
-  padding: 0; 
+  padding: 0;
 }
 
 section .particles {
@@ -2038,7 +2039,8 @@ section .particles {
 .cardd {
   background-color: #fff;
 }
-.blog-home{
+
+.blog-home {
   background-color: #eeeeee;
 }
 
@@ -2597,6 +2599,10 @@ section .particles {
   background-color: var(--color-primary);
   padding: 50px 0;
   color: white;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(/site/img/circulo.png);
 }
 
 .footer .footer-info .logo {
@@ -2715,6 +2721,7 @@ section .particles {
 .my:hover {
   transform: scale(1.1);
 }
+
 .my {
   transition: transform 0.5s;
   background-color: #fff;
@@ -2723,6 +2730,7 @@ section .particles {
 .ank {
   transition: 0.5s;
 }
+
 .ank:hover {
   color: #ffffff !important;
   transition: 0.5s;
@@ -2768,7 +2776,7 @@ section .particles {
 
 @media (prefers-reduced-motion:reduce) {
   .carousel-item {
-      transition: none
+    transition: none
   }
 }
 
@@ -2812,9 +2820,10 @@ section .particles {
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .carousel-fade .active.carousel-item-left,
   .carousel-fade .active.carousel-item-right {
-      transition: none
+    transition: none
   }
 }
 
@@ -2838,9 +2847,10 @@ section .particles {
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .carousel-control-next,
   .carousel-control-prev {
-      transition: none
+    transition: none
   }
 }
 
@@ -2914,7 +2924,7 @@ section .particles {
 
 @media (prefers-reduced-motion:reduce) {
   .carousel-indicators li {
-      transition: none
+    transition: none
   }
 }
 
@@ -2958,6 +2968,7 @@ section .particles {
   bottom: 0;
   margin: auto;
 }
+
 .slider-image {
   position: relative;
   height: 800px;
@@ -2973,4 +2984,71 @@ section .particles {
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom, rgba(255, 150, 67, 0) 60%, rgba(0, 0, 0, 0.6));
+}
+
+/* ------------- VEHICLES ------------------*/
+.image-card {
+  height: 350px;
+}
+
+.image-card img {
+  height: 100%;
+  width: 100%;
+}
+
+.section-header {
+  padding: 10px;
+}
+
+.section-header h2 {
+  font-size: 50px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.section-header p {
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.btnsearch {
+  display: block;
+  margin: 20px 3px;
+  width: fit-content;
+  padding: 14px 30px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+
+.portfolio-container {
+  padding: 30px;
+}
+
+.card-header {
+  background-color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.card-header:hover h5 {
+  background-color: #8f8080;
+}
+
+.vehiclefocus {
+  padding: 5px;
+  border: 1px solid #0a0a0a;
+  border-radius: 6px;
+  transition: background 0.5s;
+}
+
+.vehiclefocus:hover p {
+  background-color: #8b8787;
+}
+
+.text-dark {
+  cursor: pointer;
+}
+
+.portfolio-info {
+  cursor: pointer;
 }

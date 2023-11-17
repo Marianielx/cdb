@@ -1,6 +1,6 @@
 @extends('layouts.merge.dashboard')
 
-@section('title', 'Cadastrar Conta')
+@section('title', 'Portal Central Da Banda - Cadastrar Conta')
 
 @section('content')
 
