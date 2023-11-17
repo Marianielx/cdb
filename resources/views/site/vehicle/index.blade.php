@@ -1,6 +1,6 @@
 @extends('layouts.merge.site')
 
-@section('title', 'Portal Central Da Banda - Locomotiva')
+@section('title', 'Portal Central Da Banda')
 
 @section('content')
 
@@ -19,43 +19,45 @@
         <div class="container" data-aos="fade-up">
 
             <!-- Search -->
-            <form action="{{ route('user.vehicle.search') }}" method="GET">
-                @csrf
-                <div class="row">
-                    <div class="col-md-8 mb-3">
-                        <input class="form-control form-control-sm" name="search" type="search" placeholder="Procurar locomotiva..." required />
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <button type="submit" class="btn btn-outline-primary btn-sm">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
+            <div class="mx-auto pull-right">
+                <div class="">
+                    <form action="{{ route('user.vehicle.search') }}" method="GET">
+                        @csrf
+                        <div class="input-group">
+                            <input name="search" class="form-control form-control-sm" type="search" placeholder="Quem procuras?" required />
+                            <span class="input-group-btn mr-5 mt-1">
+                                <button class="btn btn-info" type="submit" title="Pesquisar Pessoa">
+                                    <span class="bi bi-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
             <!-- /Search -->
 
             <div class="section-header">
                 <h2>Locomotivas</h2>
                 <p>A Procura de locomotivas desaparecidos é um critério de preocupação:</p>
             </div>
+
             <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4 portfolio-container">
                     @foreach ($data as $item)
                     <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+                        <div class="card-header">
+                            @if($item->vehicle_state == 'Encontrado')
+                            <h5 class="mb-1 text-primary">{{ $item->vehicle_state }}</h5>
+                            @endif
+                            @if($item->vehicle_state == 'Procura-se')
+                            <h5 class="mb-1 text-danger">{{ $item->vehicle_state }}</h5>
+                            @endif
+                        </div>
                         <div class="portfolio-wrap">
-                            <div style="height: 350px">
-                                <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid" alt="" style="height:100%; width:100%;"></a>
+                            <div class="vehicle-card">
+                                <a href="{{ url("/storage/$item->vehicle_image") }}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{ url("/storage/$item->vehicle_image") }}" class="img-fluid"></a>
                             </div>
                             <div class="portfolio-info">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <p>Destaque:</p>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p class="text-danger" style="text-align: right;">{{ $item->vehicle_focus }}</p>
-                                    </div>
-                                </div>
-                                <hr>
                                 <h4>{{ $item->vehicle_brand }}</h4>
                                 <hr>
                                 <div class="row">
@@ -63,12 +65,6 @@
                                         <p class="mb-1 text-dark">{{ date('d-m-Y', strtotime($item->vehicle_missingdate)) }} </p>
                                     </div>
                                     <div class="col-md-5">
-                                        @if($item->vehicle_state == 'Encontrado')
-                                        <p class="mb-1 text-primary">{{ $item->vehicle_state }}</p>
-                                        @endif
-                                        @if($item->vehicle_state == 'Procura-se')
-                                        <p class="mb-1 text-danger">{{ $item->vehicle_state }}</p>
-                                        @endif
                                     </div>
                                     <div class="col-md-2">
                                         @if($item->vehicle_state == 'Encontrado')
@@ -89,11 +85,22 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm" data-toggle="tooltip" title='Visualizar Informações'><i class="bi bi-eye"></i></button>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-warning commentbtn btn-sm" data-toggle="tooltip" title='Comentar'><i class="bi bi-chat"></i></button>
-                                <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></a></button>
-                                <button type="button" class="btn btn-secondary btn-sm"><a href="{{ route('user.vehicle.detail', $item->id) }}" data-toggle="tooltip" title='Informações Detalhadas'><i class="bi bi-info-circle"></i></a></button>
-                                <button type="button" class="btn btn-success btn-sm"><a href="{{ route('user.vehicleGallery.detail', $item->id) }}" data-toggle="tooltip" title='Anexar Imagem'><i class="bi bi-file-image"></i></a></button>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <button type="button" value="{{ $item->id }}" class="btn btn-secondary showbtn btn-sm" data-toggle="tooltip" title='Visualizar Informações'><i class="bi bi-eye"></i></button>
+                                            <button type="button" value="{{ $item->id }}" class="btn btn-warning commentbtn btn-sm" data-toggle="tooltip" title='Comentar'><i class="bi bi-chat"></i></button>
+                                            <button type="button" value="{{ $item->id }}" class="btn btn-primary descriptionbtn btn-sm" data-toggle="tooltip" title='Visualizar Apelação'><i class="bi bi-view-stacked"></i></a></button>
+                                            <button type="button" class="btn btn-secondary btn-sm"><a href="{{ route('user.vehicle.detail', $item->id) }}" data-toggle="tooltip" title='Informações Detalhadas'><i class="bi bi-info-circle"></i></a></button>
+                                            <button type="button" class="btn btn-success btn-sm"><a href="{{ route('user.vehicleGallery.detail', $item->id) }}" data-toggle="tooltip" title='Anexar Imagem'><i class="bi bi-file-image"></i></a></button>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="vehiclefocus">
+                                                <p class="text-dark">{{ $item->vehicle_focus }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

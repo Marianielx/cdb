@@ -20,13 +20,13 @@ class VehicleController extends Controller
 
     public function index()
     {
-        $response['data'] = vehicle::where('vehicle_state', 'Procura-se')->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = vehicle::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
     public function list()
     {
-        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = vehicle::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
@@ -121,7 +121,7 @@ class VehicleController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->Orwhere('vehicle_state', 'Procura-se')->Orwhere('fullname', 'Like', '%' . $search . '%')->Orwhere('nickname', $search)->paginate(3);
+        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->Orwhere('vehicle_state', 'Procura-se')->Orwhere('vehicle_card_number', 'Like', '%' . $search . '%')->Orwhere('vehicle_chasis_number', $search)->Orwhere('vehicle_engine_number', $search)->Orwhere('vehicle_board_number', $search)->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
@@ -130,7 +130,7 @@ class VehicleController extends Controller
         vehicle::find($id)->update(
             ['vehicle_state' => 'Encontrado',]
         );
-        return redirect()->route('site.person.index')->with('edit', '1');
+        return redirect()->route('site.vehicle.index')->with('edit', '1');
         $this->Logger->log('info', 'Vehicle Inactivated the state - User Nº:' . Auth::user()->id);
     }
 
