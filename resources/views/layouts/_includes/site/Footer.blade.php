@@ -1,5 +1,4 @@
 <footer id="footer" class="footer">
-
     <div class="container">
         <div class="row gy-4">
             <div class="col-lg-3 col-md-12">
@@ -11,14 +10,10 @@
                     <a target="_blank" href="https://www.facebook.com/HCKMariano" class="facebook"><i class="bi bi-facebook"></i></a>
                     <a target="_blank" href="https://www.linkedin.com/in/mariano-vunge-24033a23b/" class="linkedin "><i class="bi bi-linkedin"></i></a>
                 </div>
-
-
             </div>
             <div class="col-lg-3 col-md-4">
-
                 <h4>EXTRA</h4>
             </div>
-
             <div class="col-lg-3 col-md-4 col-6 footer-links">
                 <h4>Informações</h4>
             </div>
@@ -28,7 +23,6 @@
             </div>
         </div>
     </div>
-
     <div class="container mt-4">
         <div class="copyright">
             <strong>Portal Central Da Banda</strong> - {{ date('Y') }} &copy; Todos Direitos Reservados <br>

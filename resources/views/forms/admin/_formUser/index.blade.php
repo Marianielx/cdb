@@ -3,7 +3,7 @@
                         <div class="card mb-4">
                             <hr class="my-0" />
                             <div class="card-body">
-                                <h3>{{ isset($data) ? 'Atualizar Usuário "' . $data->first_name . '"' : 'Cadastrar' }}</h3>
+                                <h3>{{ isset($data) ? 'Atualizar Usuário "' . $data->first_name . '"' : 'Cadastrar Usuário' }}</h3>
                                 <hr>
                                 <div class="row">
                                     <div class="form-group col-md-6 mb-3">

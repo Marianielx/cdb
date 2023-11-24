@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
-class vehicleComment extends Model
+class VehicleComment extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'vehicle_comments';
@@ -14,7 +14,7 @@ class vehicleComment extends Model
 
     public function vehicle_data()
     {
-        return $this->belongsTo(vehicle::class, 'fk_vehicleId');
+        return $this->belongsTo(Vehicle::class, 'fk_vehicleId');
     }
 
     public function users_name()

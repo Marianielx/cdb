@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
-class vehicleGallery extends Model
+class VehicleGallery extends Model
 {
     use HasFactory, SoftDeletes;
     protected $table = 'vehicle_galleries';
@@ -14,6 +14,6 @@ class vehicleGallery extends Model
 
     public function vehicle_data()
     {
-        return $this->belongsTo(vehicle::class, 'fk_idvehicle');
+        return $this->belongsTo(Vehicle::class, 'fk_idvehicle');
     }
 }
