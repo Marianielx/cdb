@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\VehicleGallery;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{vehicle, vehicleComment};
+use App\Models\{Vehicle, VehicleComment};
 
 class VehicleGalleryController extends Controller
 {
@@ -36,10 +36,10 @@ class VehicleGalleryController extends Controller
 
     public function detail($id)
     {
-        $response['data'] = vehicle::find($id);
+        $response['data'] = Vehicle::find($id);
         $response['count'] = VehicleGallery::where("fk_idvehicle", $id)->get()->count();
-        $response['comment'] = vehicleComment::where('fk_vehicleId', $id)->OrderBy("id", "desc")->get();
-        $response['count_comments'] = vehicleComment::where('fk_vehicleId', $id)->count();
+        $response['comment'] = VehicleComment::where('fk_vehicleId', $id)->OrderBy("id", "desc")->get();
+        $response['count_comments'] = VehicleComment::where('fk_vehicleId', $id)->count();
         return view('user.vehicleGallery.detail.index', $response);
     }
 

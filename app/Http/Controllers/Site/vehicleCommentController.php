@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Site;
 use Exception;
 use App\Classes\Logger;
 use Illuminate\Http\Request;
-use App\Models\vehicleComment;
+use App\Models\VehicleComment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +30,7 @@ class vehicleCommentController extends Controller
             ]
         );
         try {
-            vehicleComment::create(
+            VehicleComment::create(
                 [
                     'body' => $request->body,
                     'fk_vehicleId' => $request->vehicle_id,
@@ -56,7 +56,7 @@ class vehicleCommentController extends Controller
             ]
         );
         try {
-            vehicleComment::create(
+            VehicleComment::create(
                 [
                     'body' => $request->body,
                     'fk_vehicleId' => $id,

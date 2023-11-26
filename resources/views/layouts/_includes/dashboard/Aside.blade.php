@@ -86,5 +86,24 @@
                 </li>
             </ul>
         </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Gestão de Anúncio</span>
+        </li>
+        <li class="menu-item py-1">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Authentications">Cliente</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.custom.create') }}" class="menu-link">
+                        <div data-i18n="Basic">Cadastrar</div>
+                    </a>
+                    <a href="{{ route('admin.custom.index') }}" class="menu-link">
+                        <div data-i18n="Basic">Listar</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </aside>

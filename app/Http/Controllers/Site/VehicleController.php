@@ -7,7 +7,7 @@ use App\Classes\Logger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{vehicle, vehicleComment};
+use App\Models\{Vehicle, VehicleComment};
 
 class VehicleController extends Controller
 {
@@ -20,19 +20,19 @@ class VehicleController extends Controller
 
     public function index()
     {
-        $response['data'] = vehicle::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = Vehicle::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
     public function list()
     {
-        $response['data'] = vehicle::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
+        $response['data'] = Vehicle::where("fk_userId", Auth::user()->id)->OrderBy('id', 'desc')->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
     public function show($id)
     {
-        $data = vehicle::find($id);
+        $data = Vehicle::find($id);
         return response()->json([
             'status' => 200,
             'vehicle' => $data,
@@ -41,9 +41,9 @@ class VehicleController extends Controller
 
     public function details($id)
     {
-        $response['data'] = vehicle::find($id);
-        $response['comment'] = vehicleComment::where('fk_vehicleId', $id)->OrderBy("id", "desc")->get();
-        $response['count_comments'] = vehicleComment::where('fk_vehicleId', $id)->count();
+        $response['data'] = Vehicle::find($id);
+        $response['comment'] = VehicleComment::where('fk_vehicleId', $id)->OrderBy("id", "desc")->get();
+        $response['count_comments'] = VehicleComment::where('fk_vehicleId', $id)->count();
         return view('user.vehicle.detail.index', $response);
     }
 
@@ -91,7 +91,7 @@ class VehicleController extends Controller
         );
         $file = $request->file('vehicle_image')->store('missing-vehicle-gallery');
         try {
-            vehicle::create(
+            Vehicle::create(
                 [
                     'vehicle_type' => $request->vehicle_type,
                     'vehicle_focus' => $request->vehicle_focus,
@@ -121,13 +121,13 @@ class VehicleController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $response['data'] = vehicle::where('fk_userId', Auth::user()->id)->Orwhere('vehicle_state', 'Procura-se')->Orwhere('vehicle_card_number', 'Like', '%' . $search . '%')->Orwhere('vehicle_chasis_number', $search)->Orwhere('vehicle_engine_number', $search)->Orwhere('vehicle_board_number', $search)->paginate(3);
+        $response['data'] = Vehicle::where('fk_userId', Auth::user()->id)->Orwhere('vehicle_state', 'Procura-se')->Orwhere('vehicle_card_number', 'Like', '%' . $search . '%')->Orwhere('vehicle_chasis_number', $search)->Orwhere('vehicle_engine_number', $search)->Orwhere('vehicle_board_number', $search)->paginate(3);
         return view('site.vehicle.index', $response);
     }
 
     public function destroy($id)
     {
-        vehicle::find($id)->update(
+        Vehicle::find($id)->update(
             ['vehicle_state' => 'Encontrado',]
         );
         return redirect()->route('site.vehicle.index')->with('edit', '1');
@@ -136,7 +136,7 @@ class VehicleController extends Controller
 
     public function update($id)
     {
-        vehicle::find($id)->update(
+        Vehicle::find($id)->update(
             ['vehicle_state' => 'Procura-se',]
         );
         return redirect()->route('site.vehicle.index')->with('edit', '1');

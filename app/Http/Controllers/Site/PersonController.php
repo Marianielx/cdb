@@ -7,7 +7,7 @@ use App\Classes\Logger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{Person, personComment};
+use App\Models\{Person, PersonComment};
 
 class PersonController extends Controller
 {
@@ -42,8 +42,8 @@ class PersonController extends Controller
     public function details($id)
     {
         $response['data'] = Person::find($id);
-        $response['comment'] = personComment::where("fk_personId", $id)->OrderBy("id", "desc")->get();
-        $response['count_comments'] = personComment::where("fk_personId", $id)->count();
+        $response['comment'] = PersonComment::where("fk_personId", $id)->OrderBy("id", "desc")->get();
+        $response['count_comments'] = PersonComment::where("fk_personId", $id)->count();
         return view('user.person.detail.index', $response);
     }
 

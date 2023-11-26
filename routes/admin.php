@@ -16,8 +16,10 @@ use App\Http\Middleware\Administrator;
 */
 
 /* Grupo de Rotas Autenticadas */
+Route::post('contacts', [CustomerContactController::class, 'store']);
 
 Route::middleware(['auth'])->group(function () {
+
   /* Manager Dashboard  */
   Route::get('admin/panel', ['as' => 'admin.home', 'uses' => 'Admin\DashboardController@index']);
 
@@ -44,13 +46,26 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/personComment/show/{id}', ['as' => 'admin.personComment.show', 'uses' => 'Admin\PersonCommentController@show'])->withoutMiddleware(['Administrator']);
     /* END */
 
-     /* Vehicle */
-     Route::get('admin/vehicle/index', ['as' => 'admin.vehicle.index', 'uses' => 'Admin\VehicleController@index'])->withoutMiddleware(['Administrator']);
-     Route::get('admin/vehicle/show/{id}', ['as' => 'admin.vehicle.show', 'uses' => 'Admin\VehicleController@show'])->withoutMiddleware(['Administrator']);
-     /* END */
+    /* Vehicle */
+    Route::get('admin/vehicle/index', ['as' => 'admin.vehicle.index', 'uses' => 'Admin\VehicleController@index'])->withoutMiddleware(['Administrator']);
+    Route::get('admin/vehicle/show/{id}', ['as' => 'admin.vehicle.show', 'uses' => 'Admin\VehicleController@show'])->withoutMiddleware(['Administrator']);
+    /* END */
 
-      /* Vehicle */
-      Route::get('admin/gallery/show/{id}', ['as' => 'admin.gallery.show', 'uses' => 'Admin\VehicleGalleryController@index'])->withoutMiddleware(['Administrator']);
-      /* END */
+    /* Vehicle */
+    Route::get('admin/gallery/show/{id}', ['as' => 'admin.gallery.show', 'uses' => 'Admin\VehicleGalleryController@index'])->withoutMiddleware(['Administrator']);
+    /* END */
+
+    /* Custom */
+    Route::get('admin/custom/index', ['as' => 'admin.custom.index', 'uses' => 'Admin\CustomerController@index'])->withoutMiddleware(['Administrator']);
+    Route::get('admin/custom/create', ['as' => 'admin.custom.create', 'uses' => 'Admin\CustomerController@create'])->withoutMiddleware(['Administrator']);
+    Route::post('admin/custom/store', ['as' => 'admin.custom.store', 'uses' => 'Admin\CustomerController@store'])->withoutMiddleware(['Administrator']);
+    Route::get('admin/custom/edit/{id}', ['as' => 'admin.custom.edit', 'uses' => 'Admin\CustomerController@edit'])->withoutMiddleware(['Administrator']);
+    Route::put('admin/custom/update/{id}', ['as' => 'admin.custom.update', 'uses' => 'Admin\CustomerController@update'])->withoutMiddleware(['Administrator']);
+    Route::get('admin/custom/show/{id}', ['as' => 'admin.custom.show', 'uses' => 'Admin\CustomerController@show'])->withoutMiddleware(['Administrator']);
+    /* END */
+
+    /* Custom */
+    Route::get('admin/custom/contact/{id}', ['as' => 'admin.custom.contact', 'uses' => 'Admin\CustomerContactController@index'])->withoutMiddleware(['Administrator']);
+    /* END */
   });
 });
