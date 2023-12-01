@@ -21,9 +21,16 @@ class CustomerContactController extends Controller
     public function index($id)
     {
         $response['custom'] = Customer::find($id);
-        $response['data'] = CustomerContact::get();
         $this->Logger->log('info', 'Get in Custom Contact ID: ' . $id . ' - User ID:' . Auth::user()->id);
         return view('admin.customContact.list.index', $response);
+    }
+
+    public function fetchcontact($id)
+    {
+        $contacts = CustomerContact::where('fk_customId', $id)->get();
+        return response()->json([
+            'contacts' => $contacts,
+        ]);
     }
 
     public function store(Request $request)
@@ -31,12 +38,14 @@ class CustomerContactController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'custom_charge' => 'required|string|max:50',
-                'custom_gmail' => 'required|string|max:255',
-                'custom_phone' => 'required|string|max:20',
-                'custom_facebook' => 'required|string|max:255',
-                'custom_instagram' => 'required|string|max:255',
-                'custom_linkedin' => 'required|string|max:255',
+                'charge' => 'required|max:50',
+                'email' => 'required|email|max:255',
+                'phone' => 'required|min:9|max:9',
+            ],
+            [
+                'charge.required' => 'Informar o campo Responsável',
+                'email.required' => 'Informar o campo E-mail',
+                'phone.required' => 'Informar o campo Telefone No',
             ]
         );
         if ($validator->fails()) {
@@ -46,16 +55,89 @@ class CustomerContactController extends Controller
             ]);
         } else {
             $contact = new CustomerContact;
-            $contact->custom_charge = $request->input('custom_charge');
-            $contact->custom_gmail = $request->input('custom_gmail');
-            $contact->custom_phone = $request->input('custom_phone');
-            $contact->custom_facebook = $request->input('custom_facebook');
-            $contact->custom_instagram = $request->input('custom_instagram');
-            $contact->custom_linkedin = $request->input('custom_linkedin');
+            $contact->charge = $request->input('charge');
+            $contact->email = $request->input('email');
+            $contact->phone = $request->input('phone');
+            $contact->fk_customId = $request->input('fk_customId');
+            $contact->fk_userId = Auth::user()->id;
             $contact->save();
             return response()->json([
-                'status'=>200,
-                'message'=>'Contacto Adicionado com Sucesso.'
+                'status' => 200,
+                'message' => 'Contacto Adicionado com Sucesso.'
+            ]);
+        }
+    }
+
+    public function edit($id)
+    {
+        $contact = CustomerContact::find($id);
+        if ($contact) {
+            return response()->json([
+                'status' => 200,
+                'contacts' => $contact,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Contacto Não Existe.'
+            ]);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'charge' => 'required|max:50',
+                'email' => 'required|email|max:255',
+                'phone' => 'required|min:9|max:9',
+            ],
+            [
+                'charge.required' => 'Informar o campo Responsável',
+                'email.required' => 'Informar o campo E-mail',
+                'phone.required' => 'Informar o campo Telefone No',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->messages()
+            ]);
+        } else {
+            $contact = CustomerContact::find($id);
+            if ($contact) {
+                $contact->charge = $request->input('charge');
+                $contact->email = $request->input('email');
+                $contact->phone = $request->input('phone');
+                $contact->update();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Contacto Alterado com sucesso.'
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Contacto Não Existe.'
+                ]);
+            }
+        }
+    }
+
+    public function destroy($id)
+    {
+        $contact = CustomerContact::find($id);
+        if ($contact) {
+            $contact->delete();
+            return response()->json([
+                'status' => 200,
+                'message' => 'Contacto Excluido com sucesso.'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 404,
+                'message' => 'Contacto Não Existe.'
             ]);
         }
     }

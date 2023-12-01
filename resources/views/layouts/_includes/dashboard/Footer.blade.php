@@ -3,7 +3,7 @@
     <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
         <div class="container mt-4">
             <div class="copyright">
-                <strong>MVIT SOLS</strong> - 2023 &copy; Todos Direitos Reservados | <a href="{{ route('site.terms') }}" target="_blank" class="text-dark-50 ank">Politícas de Privacidade & Termos de Uso</a>
+                <strong>MVIT SOLS</strong> - {{date('Y')}} &copy; Todos Direitos Reservados | <a href="{{ route('site.terms') }}" target="_blank" class="text-dark-50 ank">Politícas de Privacidade & Termos de Uso</a>
             </div>
         </div>
     </div>
@@ -105,42 +105,6 @@
 </script>
 @endif
 
-<script src="{{ asset('dashboard/assets/vendor/libs/jquery/jquery.js') }}"></script>
-<script src="{{ asset('dashboard/assets/vendor/libs/popper/popper.js') }}"></script>
-<script src="{{ asset('dashboard/assets/vendor/js/bootstrap.js') }}"></script>
-<script src="{{ asset('dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-<script src="{{ asset('dashboard/assets/vendor/js/menu.js') }}"></script>
-<script src="/js/sweetalert2.all.min.js"></script>
-<!-- Vendors JS -->
-<script src="{{ asset('dashboard/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
-<!-- Main JS -->
-<script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
-<!-- Page JS -->
-<script src="{{ asset('dashboard/assets/js/dashboards-analytics.js') }}"></script>
-<!-- Place this tag in your head or just before your close body tag. -->
-<script src="{{ asset('dashboard/js/buttons.js') }}"></script>
-
-<script src='/dashboard/js/jquery.dataTables.min.js'></script>
-<script src='/dashboard/js/dataTables.bootstrap4.min.js'></script>
-
-<!-- <script>
-    $('#dataTable-1').DataTable({
-        autoWidth: true,
-        "lengthMenu": [
-            [8, 16, 32, -1],
-            [8, 16, 32, "All"]
-        ],
-        "order": [
-            [0, 'desc']
-        ]
-    });
-</script> -->
-
-<script src="/js/jquery-3.6.0.min.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-{{-- <script type="text/javascript" src="{{ asset('dashboard/assets/toastr/js/toastify.js') }}"></script> --}}
-@yield('scripts')
-
 @if (session('create'))
 <script>
     Toastify({
@@ -202,3 +166,43 @@
     }).showToast();
 </script>
 @endif
+
+<script src="{{ asset('dashboard/assets/vendor/libs/jquery/jquery.js') }}"></script>
+<script src="{{ asset('dashboard/assets/vendor/libs/popper/popper.js') }}"></script>
+<script src="{{ asset('dashboard/assets/vendor/js/bootstrap.js') }}"></script>
+<script src="{{ asset('dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+<script src="{{ asset('dashboard/assets/vendor/js/menu.js') }}"></script>
+<script src="/js/sweetalert2.all.min.js"></script>
+<script src="{{ asset('dashboard/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
+<script src="{{ asset('dashboard/assets/js/dashboards-analytics.js') }}"></script>
+<script src="{{ asset('dashboard/js/buttons.js') }}"></script>
+<script src='/dashboard/js/jquery.dataTables.min.js'></script>
+<script src='/dashboard/js/dataTables.bootstrap4.min.js'></script>
+<script type="text/javascript" src="{{ asset('dashboard/assets/toastr/js/toastify.js') }}"></script>
+<script src="/js/jquery-3.6.0.min.js"></script>
+@yield('scripts')
+<script src='/dashboard/js/jquery.dataTables.min.js'></script>
+<script src='/dashboard/js/dataTables.bootstrap4.min.js'></script>
+<script>
+    $('#dataTable-1').DataTable({
+        autoWidth: true,
+        "lengthMenu": [
+            [8, 16, 32, -1],
+            [8, 16, 32, "All"]
+        ],
+        "order": [
+            [0, 'desc']
+        ]
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            language: {
+                url: "/dashboard/cdn/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+            }
+        });
+    });
+</script>

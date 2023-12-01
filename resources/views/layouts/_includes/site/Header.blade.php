@@ -4,12 +4,15 @@
 <title>@yield('title')</title>
 <meta content="" name="description">
 <meta content="" name="keywords">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Favicons -->
 <link href="/site/img/favicon.png" rel="icon">
 <link href="/site/img/apple-touch-icon.png" rel="apple-touch-icon">
+
 <!-- Google Fonts -->
 <link href="/site/font/googleapis/css/family_sans.css" rel="stylesheet">
+
 <!-- Vendor CSS Files -->
 <link href="/site/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="/site/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">

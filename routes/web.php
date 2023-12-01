@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\{CustomerContactController, StudentController};
 
+Route::get('students', ['as' => 'site.student.index', 'uses' => 'StudentController@index']);
 Route::post('students', [StudentController::class, 'store']);
 Route::get('fetch-students', [StudentController::class, 'fetchstudent']);
 Route::get('edit-student/{id}', [StudentController::class, 'edit']);

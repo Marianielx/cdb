@@ -16,7 +16,7 @@ class UserFactory extends Factory
             'first_name' => "admin",
             'last_name' => "istrator",
             'email' => "cdb@admin.com",
-            'level' => 'Administrator',
+    'level' => 'Administrator',
             'email_verified_at' => now(),
             'password' => bcrypt("t;jfN=2z7DIh"),
             'remember_token' => Str::random(10),

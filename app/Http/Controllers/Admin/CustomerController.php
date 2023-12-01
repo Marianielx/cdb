@@ -7,6 +7,7 @@ use App\Classes\Logger;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CustomerBanner;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
@@ -21,6 +22,7 @@ class CustomerController extends Controller
     public function index()
     {
         $response['data'] = Customer::get();
+        $response['custom_total'] = Customer::count();
         $this->Logger->log('info', 'Listed Customer');
         return view('admin.custom.list.index', $response);
     }
@@ -70,6 +72,15 @@ class CustomerController extends Controller
         }
         return redirect()->route('admin.custom.index')->with('create', '1');
         $this->Logger->log('info', 'Custom Saved - User Nº:' . Auth::user()->id);
+    }
+
+    public function detail($id)
+    {
+        $response['custom'] = Customer::with(['images'])->find($id);
+        $response['count']  = CustomerBanner::where("fk_customId", $id)->get()->count();
+        $response['data'] = Customer::find($id);
+        $this->Logger->log('info', 'Get in Custom detail banner ID: ' . $id . ' - User ID:' . Auth::user()->id);
+        return view('admin.custom.detailbanner.index', $response);
     }
 
     public function edit($id)

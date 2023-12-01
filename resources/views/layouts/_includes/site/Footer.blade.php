@@ -41,6 +41,7 @@
         <div class="spinner-grow circle-infosi"></div>
     </div>
 </div>
+
 <!-- Vendor JS Files -->
 <script src="/site/js/googleapis.min.js"></script>
 <script src="/site/js/bootstrap.min.js"></script>
@@ -58,7 +59,6 @@
 
 <!-- Template Main JS File -->
 <script src="/site/js/main.js"></script>
-
 @yield('scripts')
 
 @if (session('helpCreate'))

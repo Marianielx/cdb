@@ -10,7 +10,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-        return view('site.student.index');
+        return view('student.index');
     }
 
     public function fetchstudent()
@@ -44,7 +44,7 @@ class StudentController extends Controller
             $student->save();
             return response()->json([
                 'status' => 200,
-                'message' => 'Student Added Successfully.'
+                'message' => 'Estudante Adicionado com sucesso.'
             ]);
         }
     }
@@ -60,7 +60,7 @@ class StudentController extends Controller
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'No Student Found.'
+                'message' => 'Estudante Não Existe.'
             ]);
         }
     }
@@ -89,12 +89,12 @@ class StudentController extends Controller
                 $student->update();
                 return response()->json([
                     'status' => 200,
-                    'message' => 'Student Updated Successfully.'
+                    'message' => 'Estudante Alterado com sucesso.'
                 ]);
             } else {
                 return response()->json([
                     'status' => 404,
-                    'message' => 'No Student Found.'
+                    'message' => 'Estudante Não Existe.'
                 ]);
             }
         }
@@ -107,12 +107,12 @@ class StudentController extends Controller
             $student->delete();
             return response()->json([
                 'status' => 200,
-                'message' => 'Student Deleted Successfully.'
+                'message' => 'Estudante Excluido com sucesso.'
             ]);
         } else {
             return response()->json([
                 'status' => 404,
-                'message' => 'No Student Found.'
+                'message' => 'Estudante Não Existe.'
             ]);
         }
     }
