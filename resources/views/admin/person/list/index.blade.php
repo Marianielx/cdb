@@ -6,16 +6,10 @@
 
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
-            <!-- Layout container -->
             <div class="layout-page">
-
-                <!-- Navbar -->
                 @include('layouts._includes.dashboard.Navbar')
-                <!-- / Navbar -->
-
                 <div class="container justify-content-center mt-2 mb-5">
                     <div class="flex-grow-1 container-p-y">
-                        <!-- Bootstrap Table with Header - Dark -->
                         <div class="card">
                             <div class="table-responsive text-nowrap">
                                 <div class="card-body">
@@ -29,7 +23,6 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-
                                             @foreach ($data as $item)
                                                 <tr class="text-center text-dark">
                                                     <td>{{ $item->id }}</td>
@@ -53,7 +46,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
                         </div>

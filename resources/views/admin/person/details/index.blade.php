@@ -1,6 +1,6 @@
 @extends('layouts.merge.dashboard')
 
-@section('title', 'Portal Central Da Banda')
+@section('title', 'Detalhe Pessoa Desaparecida')
 
 @section('content')
 

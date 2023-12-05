@@ -1,6 +1,6 @@
 @extends('layouts.merge.dashboard')
 
-@section('title', 'Editar Cliente')
+@section('title', 'Editar Cliente Agenda')
 
 @section('content')
 
