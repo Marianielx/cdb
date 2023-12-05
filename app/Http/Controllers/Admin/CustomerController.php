@@ -7,7 +7,7 @@ use App\Classes\Logger;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\CustomerBanner;
+use App\Models\{Log, CustomerBanner};
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
@@ -74,15 +74,6 @@ class CustomerController extends Controller
         $this->Logger->log('info', 'Custom Saved - User Nº:' . Auth::user()->id);
     }
 
-    public function detail($id)
-    {
-        $response['custom'] = Customer::with(['images'])->find($id);
-        $response['count']  = CustomerBanner::where("fk_customId", $id)->get()->count();
-        $response['data'] = Customer::find($id);
-        $this->Logger->log('info', 'Get in Custom detail banner ID: ' . $id . ' - User ID:' . Auth::user()->id);
-        return view('admin.custom.detailbanner.index', $response);
-    }
-
     public function edit($id)
     {
         if (Auth::user()->level != 'Administrator' && Auth::user()->id != $id) {
@@ -133,6 +124,6 @@ class CustomerController extends Controller
     {
         $response['data'] = Customer::find($id);
         $this->Logger->log('info', 'Get in Show Custom With ID: ' . $id);
-        return view('user.vehicle.detail.index', $response);
+        return view('admin.custom.detail.index', $response);
     }
 }

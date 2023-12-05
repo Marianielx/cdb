@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
 use App\Classes\Logger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use App\Models\{Customer, CustomerBanner};
-use Exception;
+use Illuminate\Support\Facades\{Auth, Validator};
 
 class CustomerBannerController extends Controller
 {
@@ -63,6 +62,15 @@ class CustomerBannerController extends Controller
         }
         return redirect()->back()->with('create', '1');
         $this->Logger->log('info', 'Customer Banner Image Saved - User Nº:' . Auth::user()->id);
+    }
+
+    public function show($id)
+    {
+        $response['data'] = Customer::find($id);
+        $response['custom'] = Customer::with(['images'])->find($id);
+        $response['count']  = CustomerBanner::where("fk_customId", $id)->get()->count();
+        $this->Logger->log('info', 'Get in Custom detail banner ID: ' . $id . ' - User ID:' . Auth::user()->id);
+        return view('admin.customBanner.detail.index', $response);
     }
 
     public function edit($id)

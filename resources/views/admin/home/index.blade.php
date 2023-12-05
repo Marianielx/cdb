@@ -23,11 +23,9 @@
         <!-- Layout container -->
         <div class="layout-page">
             @include('layouts._includes.dashboard.Navbar')
-
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 <!-- Content -->
-
                 <div class="container-xxl flex-grow-1 container-p-y mt-2 mb-5 ">
                     <div class="row mb-5">
                         <div class="col-md-3">
@@ -35,7 +33,7 @@
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <div class="">
-                                            <h4>Dados Pessoa</h4>
+                                            <h4>Pessoa</h4>
                                             <hr>
                                         </div>
                                         <div class="dropdown">
@@ -48,16 +46,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="fw-semibold d-block mb-1">Número De Inscritos</span>
+                                    <span class="fw-semibold d-block mb-1">Inscritos</span>
                                     <h3 class="card-title mb-2 text-success">{{ $count_people }}</h3>
                                     <hr>
-                                    <span class="fw-semibold d-block mb-1">Número de Comentários</span>
+                                    <span class="fw-semibold d-block mb-1">Comentários</span>
                                     <h3 class="card-title mb-2 text-success">{{ $count_person_comments }}</h3>
                                     <hr>
-                                    <span class="fw-semibold d-block mb-1">Número de Procura</span>
+                                    <span class="fw-semibold d-block mb-1">Procuradas</span>
                                     <h3 class="card-title mb-2 text-success">{{ $count_people_seek }}</h3>
                                     <hr>
-                                    <span class="fw-semibold d-block mb-1">Número de Encontro</span>
+                                    <span class="fw-semibold d-block mb-1">Encontradas</span>
                                     <h3 class="card-title mb-2 text-success">{{ $count_people_found }}</h3>
 
                                 </div>
@@ -68,7 +66,7 @@
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
                                         <div class="">
-                                            <h4>Dados Locomotiva</h4>
+                                            <h4>Locomotivas</h4>
                                             <hr>
                                         </div>
                                         <div class="dropdown">
@@ -81,20 +79,46 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="fw-semibold d-block mb-1">Número de Inscritos</span>
+                                    <span class="fw-semibold d-block mb-1">Inscritos</span>
                                     <h3 class="card-title mb-2 text-success">{{ $count_vehicle }}</h3>
                                     <hr>
-                                    <span class="fw-semibold d-block mb-1">Número de Comentários</span>
+                                    <span class="fw-semibold d-block mb-1">Comentários</span>
                                     <h3 class="card-title mb-2 text-success">{{ $count_vehicle_comments }}</h3>
                                     <hr>
-                                    <span class="fw-semibold d-block mb-1">Número de Procura</span>
+                                    <span class="fw-semibold d-block mb-1">Procurados</span>
                                     <h3 class="card-title mb-2 text-success">{{ $count_vehicle_seek }}</h3>
                                     <hr>
-                                    <span class="fw-semibold d-block mb-1">Número de Encontro</span>
+                                    <span class="fw-semibold d-block mb-1">Encontrados</span>
                                     <h3 class="card-title mb-2 text-success">{{ $count_vehicle_found }}</h3>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                        <div class="">
+                                            <h4>Cliente </h4>
+                                            <hr>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                                <a class="dropdown-item" href="{{ route('admin.custom.index') }}">Ver
+                                                    mais</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="fw-semibold d-block mb-1">Registrados</span>
+                                    <h3 class="card-title mb-2 text-success">{{ $count_users }}</h3>
+                                    <hr>
+                                    <span class="fw-semibold d-block mb-1">Anúncios</span>
+                                    <h3 class="card-title mb-2 text-success">{{ $count_custom_baner }}</h3>
+                                </div>
+                            </div>
+                        </div> 
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-body">

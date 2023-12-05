@@ -6,6 +6,21 @@
                                 <h3>{{ isset($data) ? 'Atualizar Cliente "' . $data->fullname . '"' : 'Cadastrar Cliente' }}</h3>
                                 <hr>
                                 <div class="row">
+                                    @isset($data)
+                                    <div class="col-12 col-lg-12">
+                                        <div class="row align-items-center my-4">
+                                            <div class="col">
+                                                <h2 class="page-title">Logotipo Actual</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-deck mb-4">
+                                            <div class="card border-0 bg-transparent">
+                                                <div class="card-img-top img-fluid rounded" style='background-image:url("/storage/{{ $data->image }}");background-position:center;background-size:cover;height:200px;width:250px;'>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endisset
                                     <div class="form-group col-md-12 mb-3">
                                         <label for="name" class="form-label">Logotipo</label>
                                         <input class="form-control" id="image" name="image" type="file" value="{{ old('image') }}" />

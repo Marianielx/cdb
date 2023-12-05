@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\Logger;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{Log, Person, personComment, User, vehicle, vehicleComment};
+use App\Models\{Customer, CustomerBanner, Log, Person, personComment, User, vehicle, vehicleComment};
 
 class DashboardController extends Controller
 {
@@ -27,6 +27,8 @@ class DashboardController extends Controller
         $response['count_vehicle_comments'] = vehicleComment::count();
         $response['count_vehicle_seek'] = vehicle::where("vehicle_state", 'Procura-se')->count();
         $response['count_vehicle_found'] = vehicle::where("vehicle_state", 'Encontrado')->count();
+        $response['count_custom'] = Customer::count();
+        $response['count_custom_baner'] = CustomerBanner::count();
 
         $jan = Log::where('USER_ID', Auth::user()->id)
             ->whereMonth('created_at', '=', 01)
