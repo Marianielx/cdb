@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card mb-4">
             <div class="card-header">
-                <a type="button" class="btn btn-lg btn-primary float-end" href="{{ url("admin/custom/detail/{$data->id}") }}">
+                <a type="button" class="btn btn-lg btn-primary float-end" href="{{ url("admin/custom/banner/show/{$data->id}") }}">
                     <span class="bx bx-bullseye"></span><i class='bx bx-bullseye'></i>
                 </a>
             </div>

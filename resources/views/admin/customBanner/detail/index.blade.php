@@ -62,7 +62,7 @@
                                     <div class="col-md-4">
                                         <div class="card-deck mb-4">
                                             <div class="card border-0 bg-transparent">
-                                                <div class="card-img-top img-fluid rounded" style='background-image:url("/storage/{{ $item->image }}");background-position:center;background-size:cover;height:400px;width:auto;'>
+                                                <div class="card-img-top img-fluid rounded" style='background-image:url("/storage/{{ $item->path }}");background-position:center;background-size:cover;height:400px;width:auto;'>
                                                 </div>
                                             </div>
                                             <div class="col-auto pr-0">
@@ -71,11 +71,14 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{{ url("admin/custom/banners/edit/{$data->id}/{$bans}") }}"><i class='bx bx-edit-alt'></i> {{ $count++ }} -
+                                                            Editar</a>
+                                                        <hr>
+                                                        <a class="dropdown-item" href="{{ url("admin/custom/banner/delete/{$item->id}") }}"><i class="bx bx-detail"></i> {{ $count++ }} -
+                                                            Detalhe</a>
+                                                        <hr>
                                                         <a class="dropdown-item" href="{{ url("admin/custom/banner/delete/{$item->id}") }}"><i class="bx bx-trash me-1"></i> {{ $count++ }} -
                                                             Excluir</a>
-                                                            <hr>
-                                                            <a class="dropdown-item" href="{{ url("admin/custom/banner/delete/{$item->id}") }}"><i class="bx bx-detail"></i> {{ $count++ }} -
-                                                            Detalhe</a>
                                                     </div>
                                                 </div>
                                             </div>

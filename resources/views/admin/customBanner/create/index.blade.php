@@ -8,7 +8,6 @@
     <div class="layout-container">
         <div class="layout-page">
             @include('layouts._includes.dashboard.Navbar')
-
             <div class="container justify-content-center mt-4 mb-5">
                 @include('errors.form')
                 <div class="row align-items-center">

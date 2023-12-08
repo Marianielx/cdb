@@ -10,7 +10,7 @@ class CreateCustomBannersTable extends Migration
     {
         Schema::create('customer_banners', function (Blueprint $table) {
             $table->id();
-            $table->string('image', 255);
+            $table->string('path', 255);
             $table->string('link', 255);
             $table->string('title', 255);
             $table->string('alt', 255);

@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Site;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{Person, Vehicle, VehicleGallery};
+use App\Models\{Person, Vehicle, VehicleGallery, CustomerBanner};
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('site.home.index');
+        $response['slideFirst'] = CustomerBanner::orderBy('id', 'desc')->first();
+        if ($response['slideFirst']) {
+            $response['slideshows'] = CustomerBanner::where('id', '!=', $response['slideFirst']->id)->orderBy('id', 'desc')->get();
+        }
+        return view('site.home.index', $response);
     }
 
     public function person()

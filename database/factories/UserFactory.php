@@ -13,8 +13,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'first_name' => "admin",
-            'last_name' => "istrator",
+            'first_name' => "Mariano",
+            'last_name' => "Vunge",
             'email' => "cdb@admin.com",
     'level' => 'Administrator',
             'email_verified_at' => now(),
