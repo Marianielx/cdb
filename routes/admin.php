@@ -62,6 +62,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/custom/show/{id}', ['as' => 'admin.custom.show', 'uses' => 'Admin\CustomerController@show'])->withoutMiddleware(['Administrator']);
     /* END */
 
+    /* Custom Banner Plan */
+    Route::get('admin/custom/plan/index', ['as' => 'admin.custom.plans.index', 'uses' => 'Admin\CustomBannerPlanController@index'])->withoutMiddleware(['Administrator']);
+    Route::get('fetch-plans', ['as' => 'admin.custom.plans.fetch', 'uses' => 'Admin\CustomBannerPlanController@fetchplan'])->withoutMiddleware(['Administrator']);
+    Route::get('fetch-plans/{id}', ['as' => 'admin.custom.plans.fetchs', 'uses' => 'Admin\CustomBannerPlanController@fetchplans'])->withoutMiddleware(['Administrator']);
+    Route::post('admin/custom/plan/store', ['as' => 'admin.custom.plans.store', 'uses' => 'Admin\CustomBannerPlanController@store'])->withoutMiddleware(['Administrator']);
+    Route::get('admin/custom/plan/edit-plan/{id}', ['as' => 'admin.custom.plans.edit', 'uses' => 'Admin\CustomBannerPlanController@edit'])->withoutMiddleware(['Administrator']);
+    Route::put('admin/custom/plan/update-plan/{id}', ['as' => 'admin.custom.plans.update', 'uses' => 'Admin\CustomBannerPlanController@update'])->withoutMiddleware(['Administrator']);
+    Route::delete('admin/custom/plan/delete-plan/{id}', ['as' => 'admin.custom.plans.destroy', 'uses' => 'Admin\CustomBannerPlanController@destroy'])->withoutMiddleware(['Administrator']);
+    /* END */
+
     /* Custom Contact Modal */
     Route::get('admin/custom/contact/{id}', ['as' => 'admin.custom.contacts.index', 'uses' => 'Admin\CustomerContactController@index'])->withoutMiddleware(['Administrator']);
     Route::get('fetch-contacts/{id}', ['as' => 'admin.custom.contacts.fetch', 'uses' => 'Admin\CustomerContactController@fetchcontact'])->withoutMiddleware(['Administrator']);
@@ -78,7 +88,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('admin/custom/banner/show/{id}', ['as' => 'admin.custom.banner.show', 'uses' => 'Admin\CustomerBannerController@show'])->withoutMiddleware(['Administrator']);
     Route::get('admin/custom/banners/edit/{id}/{id_}', ['as' => 'admin.custom.banners.edit', 'uses' => 'Admin\CustomerBannerController@edit'])->withoutMiddleware(['Administrator']);
     Route::put('admin/custom/banners/update/{id}', ['as' => 'admin.custom.banners.update', 'uses' => 'Admin\CustomerBannerController@update'])->withoutMiddleware(['Administrator']);
-    Route::delete('admin/custom/banners/delete/{id}', ['as' => 'admin.custom.banners.destroy', 'uses' => 'Admin\CustomerBannerController@destroy'])->withoutMiddleware(['Administrator']);
+    Route::get('admin/custom/banners/image/{id}/{id_}', ['as' => 'admin.custom.banners.editImage', 'uses' => 'Admin\CustomerBannerController@editImage'])->withoutMiddleware(['Administrator']);
+    Route::put('admin/custom/banners/update/{id}', ['as' => 'admin.custom.banners.updateImage', 'uses' => 'Admin\CustomerBannerController@updateImage'])->withoutMiddleware(['Administrator']);
+    Route::put('admin/custom/banners/delete/{id}', ['as' => 'admin.custom.banners.destroy', 'uses' => 'Admin\CustomerBannerController@destroy'])->withoutMiddleware(['Administrator']);
     /* END */
   });
 });

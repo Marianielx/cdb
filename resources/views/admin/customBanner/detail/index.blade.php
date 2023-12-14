@@ -48,7 +48,7 @@
 
                                 <div class="row align-items-center my-4">
                                     <div class="col">
-                                        <h2 class="page-title">Imagem: {{ $count }}</h2>
+                                        <h2 class="page-title">Anúncio: {{ $count }}</h2>
                                     </div>
                                     <div class="col-auto">
                                         <a type="button" class="btn btn-lg btn-primary text-white" href="{{ url("admin/custom/banner/create/{$data->id}") }}">
@@ -71,11 +71,11 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ url("admin/custom/banners/edit/{$data->id}/{$bans}") }}"><i class='bx bx-edit-alt'></i> {{ $count++ }} -
+                                                        <a class="dropdown-item" href="{{ url("admin/custom/banners/edit/{$data->id}/{$bans}") }}"><i class='bx bx-edit-alt'></i> {{ $count++ }} -
                                                             Editar</a>
                                                         <hr>
-                                                        <a class="dropdown-item" href="{{ url("admin/custom/banner/delete/{$item->id}") }}"><i class="bx bx-detail"></i> {{ $count++ }} -
-                                                            Detalhe</a>
+                                                        <a class="dropdown-item" href="{{ url("admin/custom/banners/image/{$data->id}/{$bans}") }}"><i class='bx bx-edit-alt'></i> {{ $count++ }} -
+                                                            Imagem</a>
                                                         <hr>
                                                         <a class="dropdown-item" href="{{ url("admin/custom/banner/delete/{$item->id}") }}"><i class="bx bx-trash me-1"></i> {{ $count++ }} -
                                                             Excluir</a>

@@ -176,7 +176,7 @@
 <script src="{{ asset('dashboard/assets/vendor/libs/apex-charts/apexcharts.js') }}"></script>
 <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
 <script src="{{ asset('dashboard/assets/js/dashboards-analytics.js') }}"></script>
-<script src="{{ asset('dashboard/js/buttons.js') }}"></script>
+<!-- <script src="{{ asset('dashboard/js/buttons.js') }}"></script> -->
 <script src='/dashboard/js/jquery.dataTables.min.js'></script>
 <script src='/dashboard/js/dataTables.bootstrap4.min.js'></script>
 <script type="text/javascript" src="{{ asset('dashboard/assets/toastr/js/toastify.js') }}"></script>

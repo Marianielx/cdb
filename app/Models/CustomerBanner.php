@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 class CustomerBanner extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'customer_banners';
+    protected $table = 'customers_banners';
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
 }

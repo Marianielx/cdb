@@ -50,34 +50,25 @@
                 </button>
                 @endisset
             </div>
-            <div class="icon-boxes position-relative">
-                <div class="container position-relative">
-                    <div class="row gy-4 mt-5">
-                        <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="icon-box">
-                                <div class="icon"><i class="bi-wifi"></i></div>
-                                <h4 class="title"><a href="#stats-counter" class="stretched-link">Angola Online</a></h4>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                            <div class="icon-box">
-                                <div class="icon"><i class="bi bi-gear"></i></div>
-                                <h4 class="title"><a href="#blog" class="stretched-link">Serviços</a></h4>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                            <div class="icon-box">
-                                <div class="icon"><i class="bi-clipboard-check"></i></div>
-                                <h4 class="title"><a href="#homologation" class="stretched-link">Homologação</a></h4>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
-                            <div class="icon-box">
-                                <div class="icon"><i class="bi-person-circle"></i></div>
-                                <h4 class="title"><a href="#clients" class="stretched-link">Parceiros</a></h4>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container mt-1">
+                <!-- About Source -->
+                <div class="col-md-12 mb-3">
+                    <h2 style="font-family: 'Times New Roman', Times, serif; color: #262626;">Origem</h2>
+                    <h1 style="font-family: 'Times New Roman', Times, serif; color: #262626;">Surgimento - 'Portal Central Da Banda'</h1>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <p style="font-family: 'Times New Roman', Times, serif; color: #262626;">O Portal Central Da Banda, vulga-se CDB originou-se como uma mera ideia por partes dos fundadores e criadores que diante de uma conversa ou mesmo debate que nenhuma das partes aceitava que estava errado sobre a existência de algo semelhante no pais ou não. Então com base nesses questionamentos teve-se o desafio espontâneo da criação de um portal que visava ajudar a outras pessoas que se identificassem com os problemas que o Portal tenciona ajudar a resolver juntamente com a sociedade em geral, isso tudo nos príncipio do ano de 2023.</p>
+                </div>
+
+                <!-- Introduction -->
+                <div class="col-md-12 mb-3">
+                    <h2 style="font-family: 'Times New Roman', Times, serif; color: #262626;">Sobre</h2>
+                    <h1 style="font-family: 'Times New Roman', Times, serif; color: #262626;">Sobre - 'O Portal Central Da Banda'</h1>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <p style="font-family: 'Times New Roman', Times, serif; color: #262626;">É um portal de utilidade pública da qual qualquer uma que seja a pessoa que domine ou não as TIC's normalmente consiga manejar e explorar o Portal. Vivemos em uma sociedade não só a nível de Angola mas a nível do mundo em que todos os dias nós deparamos com problemas do genero em que temos pessoas chegas a nós que dá-se participação informal do desaparecimento fisíco.</p>
+                    <p>Estima-se que em média a nível de todo mundo dezenas e centenas de pessoas são dadas como desaparecidas, algumas simplesmente desaprecem por vontade espontânea.</p>
+                    <p>Temos aquelas pessoas que são obrigadas a desaparecer o habitar dos seus ente-queridos, umas acabam sendo vitimas de rapto, contra-bando, ou mesmo homicídio.</p>
                 </div>
             </div>
         </div>

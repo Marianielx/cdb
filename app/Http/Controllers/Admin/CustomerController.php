@@ -7,7 +7,6 @@ use App\Classes\Logger;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{Log, CustomerBanner};
 use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller

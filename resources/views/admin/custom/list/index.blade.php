@@ -49,7 +49,7 @@
                                                 <a href="{{ url("admin/custom/contact/{$item->id}") }}"><i class="bx bxs-contact" data-toggle="tooltip" data-placement="top" title="Agende aqui..."></i></a>
                                             </td>
                                             <td>
-                                                <a href="{{ url("admin/custom/banner/show/{$item->id}"><i class='bx bx-slideshow' data-toggle="tooltip" data-placement="top" title="Anuncie aqui..."></i></a>
+                                                <a href="{{ url("admin/custom/banner/show/{$item->id}") }}"><i class="bx bx-slideshow" data-toggle="tooltip" data-placement="top" title="Anuncie aqui..."></i></a>
                                             </td>
                                             <td>
                                                 <div class="dropdown">
