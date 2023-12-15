@@ -14,6 +14,7 @@ class CreateVehiclesTable extends Migration
             $table->string('vehicle_ownertelephone', 20);
             $table->string('vehicle_owneraddress', 255);
             $table->string('vehicle_type', 10);
+            $table->string('vehicle_model', 50);
             $table->string('vehicle_brand', 50);
             $table->string('vehicle_engine_number', 50);
             $table->string('vehicle_chasis_number', 50);

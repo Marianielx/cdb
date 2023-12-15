@@ -81,53 +81,58 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa-solid fa-eye"></i> Visualizar Informação</h5>
+                <h5 class="modal-title"><i class="fa-solid fa-eye"></i> Detalhes da Informação</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">Nome Completo</label>
-                    <input type="text" id="fullname" class="form-control" readonly>
+                    <h6>
+                        <p id="fullname" class="label-control"></p>
+                    </h6>
                 </div>
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">Apelido Ou Alcunha</label>
-                    <input type="text" id="nickname" class="form-control" readonly>
+                    <h6>
+                        <p id="nickname" class="label-control"></p>
+                    </h6>
                 </div>
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">Bairro</label>
-                    <input type="text" id="neighborhood" class="form-control" readonly>
+                    <h6>
+                        <p id="neighborhood" class="label-control"></p>
+                    </h6>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 mb-1">
-                        <label class="label-control">Telefone 1</label>
-                        <input type="text" id="phoneOne" class="form-control" readonly>
-                    </div>
-                    <div class="col-md-6 mb-1">
-                        <label class="label-control">Telefone 2</label>
-                        <input type="text" id="phoneTwo" class="form-control" readonly>
+                    <div class="col-md-12 mb-1">
+                        <h6>
+                            <p id="phones" class="label-control"></p>
+                        </h6>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 mb-1">
-                        <label class="label-control">Pertub. Mental?</label>
-                        <input type="text" id="mental_diase" class="form-control" readonly>
+                    <div class="col-md-12 mb-1">
+                        <h6>
+                            <p id="mental_diase" class="label-control"></p>
+                        </h6>
                     </div>
-                    <div class="col-md-4 mb-1">
-                        <label class="label-control">Pode Falar?</label>
-                        <input type="text" id="mute_and_deaf" class="form-control" readonly>
+                    <div class="col-md-12 mb-1">
+                        <h6>
+                            <p id="mute_and_deaf" class="label-control"></p>
+                        </h6>
                     </div>
-                    <div class="col-md-4 mb-1">
-                        <label class="label-control">Pode Ver?</label>
-                        <input type="text" id="can_not_see" class="form-control" readonly>
+                    <div class="col-md-12 mb-1">
+                        <h6>
+                            <p id="can_not_see" class="label-control"></p>
+                        </h6>
                     </div>
                 </div>
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">Esquadra</label>
-                    <input type="text" id="watchStation" class="form-control" readonly>
+                    <h6>
+                        <p id="watchStation" class="label-control"></p>
+                    </h6>
                 </div>
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">Telefone da Esquadra</label>
-                    <input type="text" id="watchPhone" class="form-control" readonly>
+                    <h6>
+                        <p id="watchPhone" class="label-control"></p>
+                    </h6>
                 </div>
             </div>
             <div class="modal-footer">
@@ -148,7 +153,9 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-12 mb-1">
-                    <input type="text" id="fullnamed" style="font-size: larger;" class="form-control" readonly>
+                    <h6>
+                        <p id="fullnamed" class="label-control"></p>
+                    </h6>
                 </div>
                 <div class="col-md-12 mb-1">
                     <textarea class="form-control" id="message" style="height: 12rem" readonly></textarea>
@@ -179,16 +186,14 @@
                 type: "GET",
                 url: "/missing-person/show/" + person_id,
                 success: function(response) {
-                    $('#fullname').val(response.person.fullname);
-                    $('#nickname').val(response.person.nickname);
-                    $('#neighborhood').val(response.person.neighborhood);
-                    $('#phoneOne').val(response.person.phoneOne);
-                    $('#phoneTwo').val(response.person.phoneTwo);
-                    $('#mental_diase').val(response.person.mental_diase);
-                    $('#mute_and_deaf').val(response.person.mute_and_deaf);
-                    $('#can_not_see').val(response.person.can_not_see);
-                    $('#watchStation').val(response.person.watchStation);
-                    $('#watchPhone').val(response.person.watchPhone);
+                    $('#fullname').html('<p> <b>Nome:</b> ' + response.person.fullname + ' </p>');
+                    $('#nickname').html('<p> <b>Apelido:</b> ' + response.person.nickname + ' </p>');
+                    $('#phones').html('<p> <b>Contacto: </b> ' + response.person.phoneOne + ' - ' + response.person.phoneTwo + ' </p>');
+                    $('#mental_diase').html('<p> <b>Pertubação Mental: </b> ' + response.person.mental_diase + ' </p>');
+                    $('#mute_and_deaf').html('<p> <b>Problema da Audição: </b> ' + response.person.mute_and_deaf + ' </p>');
+                    $('#can_not_see').html('<p> <b>Problema da Visão: </b> ' + response.person.can_not_see + ' </p>');
+                    $('#watchStation').html('<p> <b>Descrição Esquadra: </b> ' + response.person.watchStation + ' </p>');
+                    $('#watchPhone').html('<p> <b>Contacto Esquadra: </b> ' + response.person.watchPhone + ' </p>');
                 }
             });
         });
@@ -204,7 +209,7 @@
                 type: "GET",
                 url: "/missing-person/show/" + person_id,
                 success: function(response) {
-                    $('#fullnamed').val(response.person.fullname);
+                    $('#fullnamed').html('<p> <b>Nome:</b> ' + response.person.fullname + ' </p>');
                     $('#message').val(response.person.message);
                 }
             });

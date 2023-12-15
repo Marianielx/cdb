@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-md-4 mb-2">
                                         <h5 class="mb-1">
-                                            <b>Pertubação Mental?</b>
+                                            <b>Pertubação Mental:</b>
                                             <hr>
                                         </h5>
                                         <p class="text-dark text-justify">{{ $data->mental_diase }}</p>
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="col-md-4 mb-2">
                                         <h5 class="mb-1">
-                                            <b>Pode Falar?</b>
+                                            <b>Poblema da audição</b>
                                             <hr>
                                         </h5>
                                         <p class="text-dark text-justify">{{ $data->mute_and_deaf }}</p>
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="col-md-4 mb-2">
                                         <h5 class="mb-1">
-                                            <b>Pode Ver?</b>
+                                            <b>Poblema da visão:</b>
                                             <hr>
                                         </h5>
                                         <p class="text-dark text-justify">{{ $data->can_not_see }}</p>
@@ -73,7 +73,7 @@
                                     <div class="col-md-8 mb-2">
                                         <h5 class="mb-1">
                                             <hr>
-                                            <b>Nome Da Esquadra</b>
+                                            <b>Descrição da Esquadra Esquadra</b>
                                             <hr>
                                         </h5>
                                         <p class="text-dark text-justify">{{ $data->watchStation }}</p>
@@ -82,7 +82,7 @@
                                     <div class="col-md-4 mb-2">
                                         <h5 class="mb-1">
                                             <hr>
-                                            <b>Número Do Telefone Da Esquadra Policial</b>
+                                            <b>Contacto da Esquadra:</b>
                                             <hr>
                                         </h5>
                                         <p class="text-dark text-justify">{{ $data->watchPhone }}</p>

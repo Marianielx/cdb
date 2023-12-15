@@ -103,45 +103,65 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="fa-solid fa-eye"></i> Visualizar Informação</h5>
+                <h5 class="modal-title"><i class="fa-solid fa-eye"></i> Detalhes da Informação</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">proprietário(a)</label>
-                    <h3><input type="text" id="ownername" class="form-control" readonly></h3>
+                    <h6>
+                        <p id="ownername" class="label-control"></p>
+                    </h6>
                 </div>
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">Telefone Nº</label>
-                    <input type="text" id="ownertelephone" class="form-control" readonly>
+                    <h6>
+                        <p id="ownertelephone" class="label-control"></p>
+                    </h6>
                 </div>
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">Última localização</label>
-                    <input type="text" id="owneraddress" class="form-control" readonly>
+                    <h6>
+                        <p id="owneraddress" class="label-control"></p>
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-1">
+                        <h6>
+                            <p id="model" class="label-control"></p>
+                        </h6>
+                    </div>
+                    <div class="col-md-6 mb-1">
+                        <h6>
+                            <p id="brand" class="label-control"></p>
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-1">
+                        <h6>
+                            <p id="color" class="label-control"></p>
+                        </h6>
+                    </div>
+                    <div class="col-md-8 mb-1">
+                        <h6>
+                            <p id="card_number" class="label-control"></p>
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-1">
+                        <h6>
+                            <p id="chasis_number" class="label-control"></p>
+                        </h6>
+                    </div>
+                    <div class="col-md-6 mb-1">
+                        <h6>
+                            <p id="engine_number" class="label-control"></p>
+                        </h6>
+                    </div>
                 </div>
                 <div class="col-md-12 mb-1">
-                    <label class="label-control">Marca - Modelo</label>
-                    <input type="text" id="brand" class="form-control" readonly>
-                </div>
-                <div class="col-md-12 mb-1">
-                    <label class="label-control">Cor</label>
-                    <input type="text" id="color" class="form-control" readonly>
-                </div>
-                <div class="col-md-12 mb-1">
-                    <label class="label-control">Matricula Nº</label>
-                    <input type="text" id="card_number" class="form-control" readonly>
-                </div>
-                <div class="col-md-12 mb-1">
-                    <label class="label-control">Chassi Nº</label>
-                    <input type="text" id="chasis_number" class="form-control" readonly>
-                </div>
-                <div class="col-md-12 mb-1">
-                    <label class="label-control">Motor Nº</label>
-                    <input type="text" id="engine_number" class="form-control" readonly>
-                </div>
-                <div class="col-md-12 mb-1">
-                    <label class="label-control">Placa Nº</label>
-                    <input type="text" id="board_number" class="form-control" readonly>
+                    <h6>
+                        <p id="board_number" class="label-control"></p>
+                    </h6>
                 </div>
             </div>
             <div class="modal-footer">
@@ -162,7 +182,9 @@
             </div>
             <div class="modal-body">
                 <div class="col-md-12 mb-1">
-                    <input type="text" id="ownernamed" style="font-size: larger;" class="form-control" readonly>
+                    <h6>
+                        <p id="ownernamed" class="label-control"></p>
+                    </h6>
                 </div>
                 <div class="col-md-12 mb-1">
                     <textarea class="form-control" id="message" style="height: 12rem" readonly></textarea>
@@ -193,15 +215,16 @@
                 type: "GET",
                 url: "/missing-vehicle/show/" + vehicle_id,
                 success: function(response) {
-                    $('#ownername').val(response.vehicle.vehicle_ownername);
-                    $('#ownertelephone').val(response.vehicle.vehicle_ownertelephone);
-                    $('#owneraddress').val(response.vehicle.vehicle_owneraddress);
-                    $('#brand').val(response.vehicle.vehicle_brand);
-                    $('#color').val(response.vehicle.vehicle_color);
-                    $('#card_number').val(response.vehicle.vehicle_card_number);
-                    $('#chasis_number').val(response.vehicle.vehicle_chasis_number);
-                    $('#engine_number').val(response.vehicle.vehicle_engine_number);
-                    $('#board_number').val(response.vehicle.vehicle_board_number);
+                    $('#ownername').html('<p> <b>Proprietário(a):</b> ' + response.vehicle.vehicle_ownername + ' </p>');
+                    $('#ownertelephone').html('<p> <b>Contacto:</b> ' + response.vehicle.vehicle_ownertelephone + ' </p>');
+                    $('#owneraddress').html('<p> <b>Endereço:</b> ' + response.vehicle.vehicle_owneraddress + ' </p>');
+                    $('#model').html('<p> <b>Modelo:</b> ' + response.vehicle.vehicle_model + ' </p>');
+                    $('#brand').html('<p> <b>Marca:</b> ' + response.vehicle.vehicle_brand + ' </p>');
+                    $('#color').html('<p> <b>Cor:</b> ' + response.vehicle.vehicle_color + ' </p>');
+                    $('#card_number').html('<p> <b>Matricula Nº:</b> ' + response.vehicle.vehicle_card_number + ' </p>');
+                    $('#chasis_number').html('<p> <b>Chassi Nº:</b> ' + response.vehicle.vehicle_chasis_number + ' </p>');
+                    $('#engine_number').html('<p> <b>Motor Nº:</b> ' + response.vehicle.vehicle_engine_number + ' </p>');
+                    $('#board_number').html('<p> <b>Placa Nº:</b> ' + response.vehicle.vehicle_board_number + ' </p>');
                 }
             });
         });
@@ -217,7 +240,7 @@
                 type: "GET",
                 url: "/missing-vehicle/show/" + vehicle_id,
                 success: function(response) {
-                    $('#ownernamed').val(response.vehicle.vehicle_ownername);
+                    $('#ownernamed').html('<p> <b>Proprietário(a):</b> ' + response.vehicle.vehicle_ownername + ' </p>');
                     $('#message').val(response.vehicle.vehicle_message);
                 }
             });

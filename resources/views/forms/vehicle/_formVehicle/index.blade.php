@@ -8,16 +8,16 @@
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-md-4">
-                            <label>
-                                Tipo de Locomotiva:
-                                <span>Automóvel</span>
-                                <input type="radio" name="vehicle_type" value="Automóvel" />
-                                <span>&nbsp;&nbsp;Motorizada</span>
-                                <input type="radio" name="vehicle_type" value="Motorizada" />
+                            <label style="color: red;">
+                                Tipo:
                             </label>
+                            <span>Automóvel</span>
+                            <input type="radio" name="vehicle_type" value="Automóvel" />
+                            <span>&nbsp;&nbsp;Motorizada</span>
+                            <input type="radio" name="vehicle_type" value="Motorizada" />
                         </div>
                         <div class="col-md-8">
-                            <label for="label-control" style="color: red;">Qual é a Peça em destaque?:</label>
+                            <label for="label-control" style="color: red;">Acessório de Destaque:</label>
                             <label>
                                 <span>Matricula</span>
                                 <input type="radio" name="vehicle_focus" value="Matricula" />
@@ -37,37 +37,40 @@
                             </div>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <input class="form-control" name="vehicle_ownername" type="text" value="{{ Auth::user()->getFullName() }}" placeholder="Informar o nome do próprietário..." />
+                            <input class="form-control" name="vehicle_ownername" type="text" value="{{ Auth::user()->getFullName() }}" placeholder="Informar nome próprietário(a)..." />
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input class="form-control" name="vehicle_ownertelephone" type="text" value="{{ old('vehicle_ownertelephone') }}" placeholder="Informar o número do telefone..." />
+                            <input class="form-control" name="vehicle_ownertelephone" type="text" value="{{ old('vehicle_ownertelephone') }}" placeholder="Informa número do telefone..." />
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input class="form-control" name="vehicle_owneraddress" type="text" value="{{ old('vehicle_owneraddress') }}" placeholder="Informar a última localização..." />
+                            <input class="form-control" name="vehicle_owneraddress" type="text" value="{{ old('vehicle_owneraddress') }}" placeholder="Informar última localização..." />
                         </div>
-
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
-                                <input class="form-control" name="vehicle_brand" type="text" value="{{ old('vehicle_brand') }}" placeholder="Informar o modelo ou a marca..." />
+                                <input class="form-control" name="vehicle_model" type="text" value="{{ old('vehicle_model') }}" placeholder="Informar modelo..." />
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input class="form-control" name="vehicle_color" type="text" value="{{ old('vehicle_color') }}" placeholder="Informar a cor..." />
+                            <div class="form-group">
+                                <input class="form-control" name="vehicle_brand" type="text" value="{{ old('vehicle_brand') }}" placeholder="Informar marca..." />
+                            </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input class="form-control" name="vehicle_card_number" type="text" value="{{ old('vehicle_card_number') }}" placeholder="Informar o número da matricula..." />
+                            <input class="form-control" name="vehicle_color" type="text" value="{{ old('vehicle_color') }}" placeholder="Informar cor..." />
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input class="form-control" name="vehicle_chasis_number" type="text" value="{{ old('vehicle_chasis_number') }}" placeholder="Informar o número do chassi..." />
+                            <input class="form-control" name="vehicle_card_number" type="text" value="{{ old('vehicle_card_number') }}" placeholder="Informar número da matricula..." />
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input class="form-control" name="vehicle_engine_number" type="text" value="{{ old('vehicle_engine_number') }}" placeholder="Informar o número do motor..." />
+                            <input class="form-control" name="vehicle_chasis_number" type="text" value="{{ old('vehicle_chasis_number') }}" placeholder="Informar número do chassi..." />
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input class="form-control" name="vehicle_board_number" type="text" value="{{ old('vehicle_board_number') }}" placeholder="Informar o número da placa..." />
+                            <input class="form-control" name="vehicle_engine_number" type="text" value="{{ old('vehicle_engine_number') }}" placeholder="Informar número do motor..." />
                         </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="label-control">Data do desaparecimento</label>
+                        <div class="col-md-6 mb-3">
+                            <input class="form-control" name="vehicle_board_number" type="text" value="{{ old('vehicle_board_number') }}" placeholder="Informar número da placa..." />
+                        </div>
+                        <div class="col-md-6 mb-3">
                             <input class="form-control" name="vehicle_missingdate" type="date" value="{{ old('vehicle_missingdate') }}" />
                         </div>
                         <div class="col-md-12 mb-3">

@@ -82,14 +82,11 @@
         <li class="menu-item py-1">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Authentications">Cliente</div>
+                <div data-i18n="Authentications">Plano</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('admin.custom.create') }}" class="menu-link">
-                        <div data-i18n="Basic">Cadastrar</div>
-                    </a>
-                    <a href="{{ route('admin.custom.index') }}" class="menu-link">
+                    <a href="{{ route('admin.custom.plans.index') }}" class="menu-link">
                         <div data-i18n="Basic">Listar</div>
                     </a>
                 </li>
@@ -98,11 +95,14 @@
         <li class="menu-item py-1">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-user"></i>
-                <div data-i18n="Authentications">Plano</div>
+                <div data-i18n="Authentications">Cliente</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('admin.custom.plans.index') }}" class="menu-link">
+                    <a href="{{ route('admin.custom.create') }}" class="menu-link">
+                        <div data-i18n="Basic">Cadastrar</div>
+                    </a>
+                    <a href="{{ route('admin.custom.index') }}" class="menu-link">
                         <div data-i18n="Basic">Listar</div>
                     </a>
                 </li>

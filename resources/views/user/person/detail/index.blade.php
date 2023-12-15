@@ -21,7 +21,7 @@
             <hr>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>Números do Telefone:</b></p>
+                    <p><b>Contacto:</b></p>
                 </div>
                 <div class="form-group col-md-6">
                     <p>{{ $data->phoneOne }} / {{ $data->phoneTwo }}</p>
@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>Sobre de Pertubação Mental:</b></p>
+                    <p><b>Pertubação Mental:</b></p>
                 </div>
                 <div class="form-group col-md-6">
                     <p>{{ $data->mental_diase }}</p>
@@ -39,7 +39,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>É Mudo e Surdo:</b></p>
+                    <p><b>Problema da Audição:</b></p>
                 </div>
                 <div class="form-group col-md-6">
                     <p>{{ $data->mute_and_deaf }}</p>
@@ -48,7 +48,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>Não Consegue ver:</b></p>
+                    <p><b>Problema da Visão:</b></p>
                 </div>
                 <div class="form-group col-md-6">
                     <p>{{ $data->can_not_see }}</p>
@@ -57,7 +57,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>Nome da Esquadra:</b></p>
+                    <p><b>Descrição da Esquadra:</b></p>
                 </div>
                 <div class="form-group col-md-6">
                     <p>{{ $data->watchStation }}</p>
@@ -66,7 +66,7 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <p><b>Número do Telefone da Esquadra:</b></p>
+                    <p><b>Contacto da Esquadra:</b></p>
                 </div>
                 <div class="form-group col-md-6">
                     <p>{{ $data->watchPhone }}</p>

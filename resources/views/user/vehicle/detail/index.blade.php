@@ -15,8 +15,13 @@
         <div class="form-group col-md-6">
             <h2>{{ $data->vehicle_ownername }}</h2>
             <hr>
-            <div class="form-group col-md-6">
-                <p><b>Marca: </b>{{ $data->vehicle_brand }} - {{ $data->vehicle_color }}</p>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <p><b>Modelo: </b>{{ $data->vehicle_model }}</p>
+                </div>
+                <div class="form-group col-md-6">
+                    <p><b>Marca: </b>{{ $data->vehicle_brand }} - {{ $data->vehicle_color }}</p>
+                </div>
             </div>
             <hr>
             <div class="row">
@@ -39,7 +44,7 @@
                     <p><b>Chassi Nº:</b> {{ $data->vehicle_chasis_number }}</p>
                 </div>
                 <div class="form-group col-md-6">
-                <p><b>Motor Nº:</b> {{ $data->vehicle_engine_number}}</p>
+                    <p><b>Motor Nº:</b> {{ $data->vehicle_engine_number}}</p>
                 </div>
                 <hr>
             </div>
